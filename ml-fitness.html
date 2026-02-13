@@ -977,7 +977,7 @@
                         <li>📸 AI identifies foods from photos instantly</li>
                         <li>📊 Get calories, protein, carbs & fat in seconds</li>
                         <li>🔒 100% private - data stays on your device</li>
-                        <li>💰 Just $6.99 one-time - No subscriptions ever</li>
+                        <li>💰 Just $6.99 one-time - No subscriptions</li>
                     </ul>
                     <div class="hero-cta">
                         <a href="https://apps.apple.com/ca/app/ml-fitness/id6752837101" class="btn btn-primary btn-large">Download for iOS - $6.99</a>
@@ -987,7 +987,7 @@
                 </div>
                 <div class="hero-image">
                     <!-- Replace 'ml-fitness-icon.png' with your actual app icon file -->
-                    <img src="ml-fitness-icon.png" alt="ML Fitness App Icon" class="app-icon-hero" style="width: 180px; height: 180px; border-radius: 40px; margin-bottom: 30px; box-shadow: var(--shadow-lg);" onerror="this.style.display='none'">
+                    <img src="ml-fitness-logo.png" alt="ML Fitness App Icon" class="app-icon-hero" style="width: 180px; height: 180px; border-radius: 40px; margin-bottom: 30px; box-shadow: var(--shadow-lg);" onerror="this.style.display='none'">
                     <!-- Replace 'ml-fitness-dashboard.png' with your actual dashboard screenshot -->
                     <img src="MLfitness-dashboard.png" alt="ML Fitness Dashboard" style="max-width: 300px; height: auto; border-radius: 30px; box-shadow: var(--shadow-lg);" onerror="this.parentElement.innerHTML='<div class=\'phone-mockup\'>ML Fitness<br><br>Dashboard Preview</div>'">
                 </div>
@@ -1013,7 +1013,7 @@
                 </div>
                 <div class="value-card">
                     <div class="value-icon">💰</div>
-                    <h3>Just $6.99 Forever</h3>
+                    <h3>Just $6.99 One-Time</h3>
                     <p>One-time purchase. No subscriptions. No monthly fees. All features included. Save hundreds compared to subscription-based apps that charge $10-20/month.</p>
                 </div>
             </div>
@@ -1029,11 +1029,10 @@
                 <div class="calculator-controls">
                     <label for="competitor-select">Compare with:</label>
                     <select id="competitor-select">
-                        <option value="myfitnesspal">MyFitnessPal Premium ($19.99/month)</option>
-                        <option value="noom">Noom ($59/month)</option>
-                        <option value="loseit">Lose It! Premium ($3.33/month)</option>
-                        <option value="cronometer">Cronometer Gold ($9.99/month)</option>
-                        <option value="fitbit">Fitbit Premium ($9.99/month)</option>
+                        <option value="premium">Premium Fitness App ($19.99/month)</option>
+                        <option value="coaching">Coaching & Wellness App ($59/month)</option>
+                        <option value="basic">Basic Tracker App ($3.33/month)</option>
+                        <option value="advanced">Advanced Nutrition App ($9.99/month)</option>
                     </select>
                 </div>
                 <table class="comparison-table">
@@ -1053,7 +1052,7 @@
                             <td>$6.99</td>
                         </tr>
                         <tr>
-                            <td><strong id="competitor-name">MyFitnessPal Premium</strong></td>
+                            <td><strong id="competitor-name">Premium Fitness App</strong></td>
                             <td id="cost-1year">$239.88</td>
                             <td id="cost-3year">$719.64</td>
                             <td id="cost-5year">$1,199.40</td>
@@ -1226,7 +1225,7 @@
                 <div class="privacy-card">
                     <div class="icon">🚫</div>
                     <h4>No Data Mining</h4>
-                    <p>We don't collect, sell, or analyze your data. Ever.</p>
+                    <p>We don't collect, sell, or analyze your data.</p>
                 </div>
                 <div class="privacy-card">
                     <div class="icon">🛡️</div>
@@ -1275,7 +1274,7 @@
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-rating">★★★★★</div>
-                    <p class="testimonial-text">"Best $30 I ever spent on a fitness app. Beats paying $20/month for the same features. Paid for itself in 6 weeks!"</p>
+                    <p class="testimonial-text">"Best $6.99 I've spent on a fitness app. Beats paying $20/month for the same features."</p>
                     <div class="testimonial-author">
                         <div class="author-info">
                             <strong>Emily R.</strong>
@@ -1302,7 +1301,7 @@
                 </div>
             </div>
             <div class="trust-badges">
-                <p>Just $6.99 one-time - No subscriptions ever</p>
+                <p>Just $6.99 one-time - No subscriptions</p>
                 <p>All features included - No upsells</p>
                 <p>Free lifetime updates included</p>
             </div>
@@ -1317,7 +1316,7 @@
             <div class="faq-list">
                 <div class="faq-item">
                     <div class="faq-question">Is there a subscription?</div>
-                    <div class="faq-answer">No! ML Fitness is just $6.99 one time. That's it. Forever. No monthly fees. No hidden charges. No premium tiers. You get all features including the AI meal scanner and own them for life.</div>
+                    <div class="faq-answer">No! ML Fitness is just $6.99 one time. That's it. No monthly fees. No hidden charges. No premium tiers. You get all features including the AI meal scanner and own them for life.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-question">Where is my data stored?</div>
@@ -1390,11 +1389,10 @@
     <script>
         // Cost Comparison Calculator
         const competitors = {
-            myfitnesspal: { name: 'MyFitnessPal Premium', price: 19.99 },
-            noom: { name: 'Noom', price: 59 },
-            loseit: { name: 'Lose It! Premium', price: 3.33 },
-            cronometer: { name: 'Cronometer Gold', price: 9.99 },
-            fitbit: { name: 'Fitbit Premium', price: 9.99 }
+            premium: { name: 'Premium Fitness App', price: 19.99 },
+            coaching: { name: 'Coaching & Wellness App', price: 59 },
+            basic: { name: 'Basic Tracker App', price: 3.33 },
+            advanced: { name: 'Advanced Nutrition App', price: 9.99 }
         };
 
         const mlFitnessPrice = 6.99;
