@@ -338,7 +338,7 @@
                 <div class="company-name">Mocha's MindLab Inc.</div>
                 <div class="dates">
                     <p><em>Effective Date: January 1, 2025</em></p>
-                    <p><em>Last Updated: January 1, 2025</em></p>
+                    <p><em>Last Updated: April 28, 2026</em></p>
                 </div>
             </header>
 
@@ -370,7 +370,7 @@
             <p>We automatically collect certain technical information, including:</p>
             <ul>
                 <li>Device information (model, operating system, unique device identifiers)</li>
-                <li>App usage analytics and performance data</li>
+                <li>Crash reports (when the operating system reports an unhandled error to Apple or Google for diagnostics; we do not run our own analytics service)</li>
                 <li>IP address and general location information</li>
                 <li>Log files and crash reports</li>
             </ul>
@@ -444,6 +444,36 @@
                 <li>Requiring re-acceptance for material changes affecting health data handling</li>
             </ul>
             <p>Your continued use of the Service after such modifications constitutes acceptance of the updated Privacy Policy.</p>
+
+            <h2>MindLab Fitness — Third-Party Services and Platform Integrations</h2>
+            <p>This section provides additional disclosures specific to MindLab Fitness on iOS and Android.</p>
+
+            <h3>Health Platform Integration</h3>
+            <p>MindLab Fitness integrates with your device's health platform — <strong>Apple HealthKit</strong> on iOS and <strong>Google Health Connect</strong> on Android — to read and write health metrics with your explicit permission.</p>
+            <ul>
+                <li><strong>Read</strong>: daily step counts, most recent weight measurement, sleep sessions.</li>
+                <li><strong>Write</strong>: weight values you enter in the app are written back so they stay in sync with other health-aware apps you use (e.g. Apple Watch, Fitbit, Garmin).</li>
+            </ul>
+            <p>Health data is processed entirely on your device and is never transmitted to our servers. You may revoke health permissions at any time through your device's privacy settings (iOS: Settings &rarr; Privacy &amp; Security &rarr; Health; Android: Health Connect app &rarr; Permissions).</p>
+
+            <h3>In-App Purchases</h3>
+            <p>MindLab Fitness offers Pro features through a one-time in-app purchase processed by <strong>Apple's App Store</strong> (iOS) or <strong>Google Play Billing</strong> (Android). We receive a purchase confirmation from these platforms but do not collect or store your payment information. Refunds and billing inquiries are handled by Apple or Google directly per their respective platform policies.</p>
+
+            <h3>AI Meal Scanner</h3>
+            <p>When you choose to scan a meal photo using the AI Meal Scanner feature, the photo is transmitted over a secure HTTPS connection to <strong>Anthropic</strong> (anthropic.com), our AI service provider, for analysis. Anthropic identifies foods in the photo and estimates nutrition values. Per Anthropic's API terms, photos are processed in real time and are <strong>not retained, logged, or used for model training</strong>. The nutrition results are returned to your device and stored locally; no copy of the photo or its analysis is kept on our servers.</p>
+            <p>If you do not use the AI Meal Scanner feature, no photos leave your device.</p>
+
+            <h3>Food Database Queries</h3>
+            <p>When you search for a food item, MindLab Fitness queries the <strong>USDA FoodData Central API</strong> and/or <strong>Open Food Facts</strong>. These queries contain only the search term you typed and do not include any identifying information about you.</p>
+
+            <h3>Notifications</h3>
+            <p>If you enable smart reminders (water, meals, weight, exercise), MindLab Fitness schedules local notifications on your device. These notifications are generated and delivered locally — no notification content is sent to our servers or to a push-notification service.</p>
+
+            <h3>Local-Only Storage</h3>
+            <p>Apart from the third-party services listed above, all MindLab Fitness data — your food log, exercise log, supplements, body measurements, sleep entries, weight history, recipes, achievements — is stored exclusively on your device using the platform's standard storage (Core Data on iOS; Room database and DataStore on Android). We do not have a server that holds this data, and we cannot recover it if you uninstall the app.</p>
+
+            <h3>Data Deletion</h3>
+            <p>You can delete all MindLab Fitness data at any time via Settings &rarr; Clear Data. This wipes the local database and all preferences. Uninstalling the app also removes all data.</p>
 
             <h2>Contact Us</h2>
             <div class="contact-section">
