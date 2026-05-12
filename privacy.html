@@ -338,7 +338,7 @@
                 <div class="company-name">Mocha's MindLab Inc.</div>
                 <div class="dates">
                     <p><em>Effective Date: January 1, 2025</em></p>
-                    <p><em>Last Updated: April 28, 2026</em></p>
+                    <p><em>Last Updated: May 12, 2026</em></p>
                 </div>
             </header>
 
@@ -463,14 +463,26 @@
             <p>When you choose to scan a meal photo using the AI Meal Scanner feature, the photo is transmitted over a secure HTTPS connection to <strong>Anthropic</strong> (anthropic.com), our AI service provider, for analysis. Anthropic identifies foods in the photo and estimates nutrition values. Per Anthropic's API terms, photos are processed in real time and are <strong>not retained, logged, or used for model training</strong>. The nutrition results are returned to your device and stored locally; no copy of the photo or its analysis is kept on our servers.</p>
             <p>If you do not use the AI Meal Scanner feature, no photos leave your device.</p>
 
-            <h3>Food Database Queries</h3>
-            <p>When you search for a food item, MindLab Fitness queries the <strong>USDA FoodData Central API</strong> and/or <strong>Open Food Facts</strong>. These queries contain only the search term you typed and do not include any identifying information about you.</p>
+            <h3>Food and Supplement Database Queries</h3>
+            <p>When you search for a food item or scan a barcode, MindLab Fitness queries one or more of the following third-party databases to retrieve nutrition or product information:</p>
+            <ul>
+                <li><strong>USDA FoodData Central</strong> (api.nal.usda.gov) — food and ingredient nutrition data.</li>
+                <li><strong>Open Food Facts</strong> (world.openfoodfacts.org) — barcode-based product lookups.</li>
+                <li><strong>Spoonacular</strong> (api.spoonacular.com) — recipe and food information.</li>
+                <li><strong>Nutritionix</strong> (trackapi.nutritionix.com) — branded food and barcode lookups.</li>
+                <li><strong>NIH Dietary Supplement Label Database (DSLD)</strong> (api.ods.od.nih.gov) — supplement product lookups when you scan a supplement barcode.</li>
+            </ul>
+            <p>These queries contain only the search term or barcode you provided and do not include any identifying information about you. Barcode decoding itself runs on-device using Google ML Kit and never transmits the camera image; only the resulting numeric barcode value is sent to the lookup service.</p>
+
+            <h3>Recipe Import</h3>
+            <p>If you choose to import a recipe by pasting a URL, MindLab Fitness fetches that URL directly from your device to extract the recipe. No personal information is sent — only a standard HTTP request to the URL you provided.</p>
 
             <h3>Notifications</h3>
             <p>If you enable smart reminders (water, meals, weight, exercise), MindLab Fitness schedules local notifications on your device. These notifications are generated and delivered locally — no notification content is sent to our servers or to a push-notification service.</p>
 
-            <h3>Local-Only Storage</h3>
+            <h3>Local-Only Storage and Data Retention</h3>
             <p>Apart from the third-party services listed above, all MindLab Fitness data — your food log, exercise log, supplements, body measurements, sleep entries, weight history, recipes, achievements — is stored exclusively on your device using the platform's standard storage (Core Data on iOS; Room database and DataStore on Android). We do not have a server that holds this data, and we cannot recover it if you uninstall the app.</p>
+            <p><strong>Retention:</strong> Data is retained on your device for as long as you keep the app installed. We do not retain copies on our servers because no such servers exist for this data. Uninstalling the app, or using Settings &rarr; Clear Data, permanently removes all locally stored MindLab Fitness data.</p>
 
             <h3>Data Deletion</h3>
             <p>You can delete all MindLab Fitness data at any time via Settings &rarr; Clear Data. This wipes the local database and all preferences. Uninstalling the app also removes all data.</p>
