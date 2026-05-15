@@ -14,12 +14,25 @@ only the proxy does.
 ## Required environment variables (Vercel dashboard)
 
 Set these under **Project → Settings → Environment Variables** for both
-Production and Preview environments:
+Production and Preview environments.
+
+**Required (minimum to run):**
 
 | Name | Value | Notes |
 |---|---|---|
-| `ANTHROPIC_API_KEY` | `sk-ant-...` | Your real Anthropic key. Server-side only — never in the app binary. |
-| `APP_SHARED_SECRET` | random 64-char string | Same value also embedded in the released app builds (release config only). |
+| `ANTHROPIC_API_KEY` | `sk-ant-...` | Your Anthropic key. Used as the fallback / single-key setup. |
+| `APP_SHARED_SECRET` | random 64-char string | Same value also embedded in released app builds (release config only). |
+
+**Optional — set later when you want iOS + Android tracked separately:**
+
+| Name | Value | Notes |
+|---|---|---|
+| `ANTHROPIC_API_KEY_IOS` | `sk-ant-...` | Used when an iOS app calls in (header `X-Platform: ios`). Falls back to `ANTHROPIC_API_KEY` if unset. |
+| `ANTHROPIC_API_KEY_ANDROID` | `sk-ant-...` | Used when an Android app calls in (header `X-Platform: android`). Falls back to `ANTHROPIC_API_KEY` if unset. |
+
+This gives separate spend caps + usage metrics per platform without any app
+update — just set the env vars when you're ready and the proxy starts routing
+automatically.
 
 Generate `APP_SHARED_SECRET` with: `openssl rand -hex 32`
 
@@ -30,6 +43,7 @@ POST /api/v1/meal-scan
 Content-Type: application/json
 X-App-Secret: <APP_SHARED_SECRET>
 X-Install-Id: <per-install UUID generated on first launch>
+X-Platform: ios | android
 
 {
   "image": "<base64-encoded JPEG, no data: prefix>"
