@@ -55,7 +55,7 @@ const PROMPT = `Analyze this food image and identify all food items. For each it
 1. Food name
 2. Estimated quantity/portion size
 3. Estimated calories
-4. Estimated macros (protein, carbs, fat in grams)
+4. Estimated macros (protein, carbs, fat, and fiber in grams)
 5. Confidence level (0-1)
 
 Return ONLY valid JSON with no other text, in this exact format:
