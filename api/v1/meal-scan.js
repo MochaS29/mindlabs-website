@@ -27,28 +27,69 @@
 // Rate limits (in-memory, best-effort — Vercel cold-starts reset state):
 //   10 scans / hour / install-id
 //   50 scans / hour / IP
-// These are first-pass guards; an abuse spike would warrant moving to Vercel KV
-// for cross-instance persistence. Anthropic spend-cap is the real backstop.
+//   300 scans / hour / instance  (global cost backstop across all callers)
+// These are first-pass guards; because they live in per-instance memory they
+// reset on every cold start. The durable fix (Vercel KV / cross-instance store)
+// is tracked in Linear. Anthropic spend-cap is the real backstop.
+
+const crypto = require('crypto');
 
 const RATE_WINDOW_MS = 60 * 60 * 1000;
 const MAX_PER_INSTALL = 10;
 const MAX_PER_IP = 50;
+const MAX_PER_INSTANCE = 300; // global per-instance hourly ceiling
 const MAX_IMAGE_BYTES = 3_000_000; // base64 length, ~2.25 MB original
+const UPSTREAM_TIMEOUT_MS = 20_000;
 
 const installCounts = new Map();
 const ipCounts = new Map();
+// Global per-instance counter. Like the Maps above, this resets on cold start;
+// the durable cross-instance limit is tracked in Linear.
+const instanceCount = { count: 0, firstAt: 0 };
+
+// Sweep-on-write: drop expired entries whenever we touch a map so it can't grow
+// unbounded across a warm instance's lifetime.
+function sweep(map, now) {
+  for (const [k, v] of map) {
+    if (now - v.firstAt > RATE_WINDOW_MS) map.delete(k);
+  }
+}
 
 function checkAndIncrement(map, key, max) {
-  if (!key) return true;
   const now = Date.now();
   const entry = map.get(key);
   if (!entry || now - entry.firstAt > RATE_WINDOW_MS) {
+    sweep(map, now);
     map.set(key, { count: 1, firstAt: now });
     return true;
   }
   if (entry.count >= max) return false;
   entry.count += 1;
   return true;
+}
+
+// Global backstop across every caller on this instance. Resets on cold start.
+function checkInstanceLimit() {
+  const now = Date.now();
+  if (now - instanceCount.firstAt > RATE_WINDOW_MS) {
+    instanceCount.count = 1;
+    instanceCount.firstAt = now;
+    return true;
+  }
+  if (instanceCount.count >= MAX_PER_INSTANCE) return false;
+  instanceCount.count += 1;
+  return true;
+}
+
+// Constant-time comparison of the client-supplied secret against the env value.
+// Missing header or a length mismatch fails fast (before timingSafeEqual, which
+// requires equal-length buffers).
+function secretMatches(provided, expected) {
+  if (typeof provided !== 'string' || provided.length === 0) return false;
+  const a = Buffer.from(provided);
+  const b = Buffer.from(expected);
+  if (a.length !== b.length) return false;
+  return crypto.timingSafeEqual(a, b);
 }
 
 const PROMPT = `Analyze this food image and identify all food items. For each item provide:
@@ -77,12 +118,6 @@ Return ONLY valid JSON with no other text, in this exact format:
 }`;
 
 module.exports = async function handler(req, res) {
-  // CORS — apps don't need this since they're native HTTP clients, but useful
-  // for curl/browser testing of the proxy itself.
-  res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, X-App-Secret, X-Install-Id');
-  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
-
   if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'method_not_allowed' });
 
@@ -92,7 +127,7 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: 'server_misconfigured' });
   }
 
-  if (req.headers['x-app-secret'] !== sharedSecret) {
+  if (!secretMatches(req.headers['x-app-secret'], sharedSecret)) {
     return res.status(401).json({ error: 'unauthorized' });
   }
 
@@ -115,15 +150,8 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: 'server_misconfigured' });
   }
 
-  if (!checkAndIncrement(installCounts, installId, MAX_PER_INSTALL)) {
-    return res.status(429).json({ error: 'rate_limit_install', message: 'Too many scans this hour.' });
-  }
-
-  const ip = (req.headers['x-forwarded-for'] || '').split(',')[0].trim();
-  if (!checkAndIncrement(ipCounts, ip, MAX_PER_IP)) {
-    return res.status(429).json({ error: 'rate_limit_ip' });
-  }
-
+  // Validate the payload BEFORE touching any rate-limit counters so malformed
+  // requests can't burn per-install / per-IP / per-instance budget.
   const body = req.body;
   if (!body || typeof body.image !== 'string' || body.image.length === 0) {
     return res.status(400).json({ error: 'missing_image' });
@@ -132,6 +160,28 @@ module.exports = async function handler(req, res) {
     return res.status(413).json({ error: 'image_too_large' });
   }
 
+  // Global instance ceiling first (cheapest check + hard cost cap), then the
+  // per-install and per-IP limits.
+  if (!checkInstanceLimit()) {
+    return res.status(429).json({ error: 'rate_limit_instance' });
+  }
+
+  if (!checkAndIncrement(installCounts, installId, MAX_PER_INSTALL)) {
+    return res.status(429).json({ error: 'rate_limit_install', message: 'Too many scans this hour.' });
+  }
+
+  // Prefer x-real-ip (set by Vercel's edge) over the leftmost x-forwarded-for
+  // hop (client-spoofable). Empty/missing IP funnels into one shared bucket so a
+  // blank key can't bypass the limit.
+  const ip = (req.headers['x-real-ip']
+    || (req.headers['x-forwarded-for'] || '').split(',')[0]
+    || '').trim() || 'no-ip';
+  if (!checkAndIncrement(ipCounts, ip, MAX_PER_IP)) {
+    return res.status(429).json({ error: 'rate_limit_ip' });
+  }
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), UPSTREAM_TIMEOUT_MS);
   try {
     const upstream = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
@@ -151,6 +201,7 @@ module.exports = async function handler(req, res) {
           ],
         }],
       }),
+      signal: controller.signal,
     });
 
     const data = await upstream.json();
@@ -164,7 +215,17 @@ module.exports = async function handler(req, res) {
     console.log('scan_ok', platform || 'unknown-platform', installId.slice(0, 8));
     return res.status(200).json(data);
   } catch (err) {
+    if (err && err.name === 'AbortError') {
+      console.error('Anthropic upstream timeout', platform || 'unknown-platform');
+      return res.status(504).json({ error: 'upstream_timeout' });
+    }
     console.error('Proxy fetch failed', err);
     return res.status(502).json({ error: 'network_error' });
+  } finally {
+    clearTimeout(timeout);
   }
 };
+
+// Give the upstream call headroom over the 20s AbortController timeout. Matches
+// the file's CommonJS export style (equivalent of `export const config`).
+module.exports.config = { maxDuration: 30 };
