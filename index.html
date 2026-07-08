@@ -1159,7 +1159,7 @@
 
     <!-- Launch Banner -->
     <div class="launch-banner">
-        ✨ 2 Products Live Now! ✨ MindLab Fitness on iOS & Mindful Meal Plan - Start your wellness journey today
+        ✨ MindLab Fitness is live on iOS &amp; Android! ✨ Mindful Meal Plans - AI kitchen management - launching soon
     </div>
 
     <!-- Navigation -->
@@ -1202,11 +1202,9 @@
                     <label for="interest">Primary Interest</label>
                     <select id="interest" name="interest" style="width: 100%; padding: 0.8rem; border: 2px solid var(--light-gray); border-radius: 8px; background: var(--warm-white); color: var(--deep-charcoal);">
                         <option value="">Select your primary interest</option>
-                        <option value="adhd">Teen ADHD Support</option>
-                        <option value="health">Health Analytics</option>
-                        <option value="fitness">Fitness & Nutrition</option>
-                        <option value="innovation">Innovation Tracking</option>
-                        <option value="progress">Daily Challenges</option>
+                        <option value="fitness">Fitness & Calorie Tracking</option>
+                        <option value="mealplans">Meal Planning & AI Kitchen</option>
+                        <option value="both">Both!</option>
                     </select>
                 </div>
                 
@@ -1220,29 +1218,30 @@
     <section class="features fade-in" id="products">
         <div class="container">
             <div class="section-header">
-                <h2>Our Complete Mindful Health Ecosystem</h2>
-                <p>Four specialized tools designed to transform every aspect of your wellness journey</p>
+                <h2>Our Mindful Health Apps</h2>
+                <p>Two specialized apps designed to transform your wellness journey</p>
             </div>
             <div class="features-grid">
                 <div class="feature-card product-card" style="position: relative;">
-                    <span style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">🟢 Live Now</span>
+                    <span style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #f59e0b, #d97706); color: white; padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">🚀 Launching Soon</span>
                     <img src="mindful-meal-plans-logo.png" alt="Mindful Meal Plans" class="feature-icon app-icon">
-                    <h3>Mindful Meal Plan</h3>
-                    <p class="product-subtitle">AI-Powered Personalized Meal Planning</p>
-                    <p>Stop asking "what's for dinner?" Get AI-personalized meal plans tailored to your diet, family size, and preferences. Complete with recipes, shopping lists, and nutritional info delivered monthly.</p>
+                    <h3>Mindful Meal Plans</h3>
+                    <p class="product-subtitle">AI-Powered Kitchen Management</p>
+                    <p>Scan. Plan. Shop. Cook. Point your camera at your fridge and AI builds your inventory, plans meals around what you already have, and keeps the whole household's grocery lists in sync. Stuck at 5pm? Ask your AI Chef what's for dinner.</p>
                     <div class="product-features">
-                        <span class="feature-tag">AI-Personalized</span>
-                        <span class="feature-tag">8 Diet Types</span>
-                        <span class="feature-tag">Shopping Lists</span>
+                        <span class="feature-tag">AI Fridge Scan</span>
+                        <span class="feature-tag">AI Chef</span>
+                        <span class="feature-tag">Smart Grocery Lists</span>
                     </div>
-                    <a href="https://mindfulmealplan.com" target="_blank" class="demo-btn" style="display: inline-block; text-decoration: none; text-align: center; background: linear-gradient(135deg, #10b981, #059669);">Visit Site →</a>
+                    <a href="#" onclick="openModal(); return false;" class="demo-btn" style="display: inline-block; text-decoration: none; text-align: center; background: linear-gradient(135deg, #f59e0b, #d97706);">Join the Launch List →</a>
                     <div class="demo-preview" style="display: block; margin-top: 1rem;">
                         <p><strong>Key Features:</strong></p>
                         <ul style="text-align: left; margin: 1rem 0;">
-                            <li>📅 Monthly meal calendar with 30+ recipes</li>
-                            <li>🥗 8 diets: Keto, Mediterranean, Vegan & more</li>
-                            <li>🛒 Organized weekly shopping lists</li>
-                            <li>👨‍👩‍👧‍👦 Customized for your family size</li>
+                            <li>📸 AI fridge &amp; pantry scan - snap a photo, get a live inventory</li>
+                            <li>👨‍🍳 AI Chef - chat your way to tonight's dinner</li>
+                            <li>🤖 AI meal plans built around your household &amp; diet</li>
+                            <li>🛒 Shared grocery &amp; pantry lists for the whole family</li>
+                            <li>📥 Import recipes from any website, Instagram, or TikTok</li>
                         </ul>
                     </div>
                 </div>
@@ -1275,6 +1274,7 @@
                         </ul>
                     </div>
                 </div>
+                <!-- HIDDEN Jul 2026: MindQuest + Insights parked while the site highlights ML Fitness + Mindful Meal Plans. Remove this comment wrapper to restore.
                 <div class="feature-card product-card" onclick="toggleDemo(this)">
                     <img src="mindquest-icon.png" alt="Mind Quest" class="feature-icon app-icon">
                     <h3>Mind Quest</h3>
@@ -1317,6 +1317,7 @@
                         </ul>
                     </div>
                 </div>
+                END HIDDEN -->
             </div>
         </div>
     </section>
@@ -1356,31 +1357,28 @@
                     <thead>
                         <tr>
                             <th>Feature</th>
-                            <th>Mindful Meal Plan</th>
+                            <th>Mindful Meal Plans</th>
                             <th>MindLab Fitness</th>
-                            <th>Mind Quest</th>
-                            <th>MindLab Insights</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>AI-Powered Analysis</strong></td>
-                            <td><span class="check-mark">✓</span></td>
-                            <td><span class="check-mark">✓</span></td>
-                            <td><span class="check-mark">✓</span></td>
+                            <td><strong>AI Meal-Photo Calorie Scanner</strong></td>
+                            <td><span class="x-mark">✗</span></td>
                             <td><span class="check-mark">✓</span></td>
                         </tr>
                         <tr>
-                            <td><strong>Gamification</strong></td>
-                            <td><span class="x-mark">✗</span></td>
-                            <td><span class="check-mark">✓</span></td>
+                            <td><strong>AI Fridge &amp; Pantry Scan</strong></td>
                             <td><span class="check-mark">✓</span></td>
                             <td><span class="x-mark">✗</span></td>
                         </tr>
                         <tr>
-                            <td><strong>Health Tracking</strong></td>
+                            <td><strong>AI Chef Chat</strong></td>
                             <td><span class="check-mark">✓</span></td>
-                            <td><span class="check-mark">✓</span></td>
+                            <td><span class="x-mark">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Calorie &amp; Macro Tracking</strong></td>
                             <td><span class="x-mark">✗</span></td>
                             <td><span class="check-mark">✓</span></td>
                         </tr>
@@ -1388,20 +1386,19 @@
                             <td><strong>Meal Planning</strong></td>
                             <td><span class="check-mark">✓</span></td>
                             <td><span class="check-mark">✓</span></td>
-                            <td><span class="x-mark">✗</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Shared Grocery &amp; Pantry Lists</strong></td>
+                            <td><span class="check-mark">✓</span></td>
                             <td><span class="x-mark">✗</span></td>
                         </tr>
                         <tr>
-                            <td><strong>Shopping Lists</strong></td>
+                            <td><strong>Exercise &amp; Step Tracking</strong></td>
+                            <td><span class="x-mark">✗</span></td>
                             <td><span class="check-mark">✓</span></td>
-                            <td><span class="x-mark">✗</span></td>
-                            <td><span class="x-mark">✗</span></td>
-                            <td><span class="x-mark">✗</span></td>
                         </tr>
                         <tr>
                             <td><strong>Data Privacy Focus</strong></td>
-                            <td><span class="check-mark">✓</span></td>
-                            <td><span class="check-mark">✓</span></td>
                             <td><span class="check-mark">✓</span></td>
                             <td><span class="check-mark">✓</span></td>
                         </tr>
@@ -1424,7 +1421,7 @@
                         When will the apps be available?
                     </div>
                     <div class="faq-answer">
-                        <p>We're launching our beta program in Q2 2025, with full public release scheduled for Q3 2025. Join our launch list to get early access!</p>
+                        <p>MindLab Fitness is available now on the App Store (iOS) and Google Play (Android). Mindful Meal Plans is launching very soon on iOS - join our launch list to get early access!</p>
                     </div>
                 </div>
                 
@@ -1460,7 +1457,7 @@
                         What platforms will be supported?
                     </div>
                     <div class="faq-answer">
-                        <p>We're launching with iOS and Android mobile apps, plus a full web application. Desktop apps for Windows and Mac are planned for late 2025.</p>
+                        <p>MindLab Fitness is on iOS and Android today. Mindful Meal Plans launches on iOS first with a web companion, with Android to follow.</p>
                     </div>
                 </div>
             </div>
@@ -1472,8 +1469,8 @@
         <div class="container">
             <div class="stats-grid">
                 <div class="stat-item">
-                    <h3>4</h3>
-                    <p>Specialized Products</p>
+                    <h3>2</h3>
+                    <p>Specialized Apps</p>
                 </div>
                 <div class="stat-item">
                     <h3>95%</h3>
@@ -1495,8 +1492,8 @@
     <section class="cta-section fade-in">
         <div class="container">
             <div class="cta-content">
-                <h2>Ready to Explore Your Complete Wellness Ecosystem?</h2>
-                <p>From teen ADHD support to AI health insights and comprehensive fitness tracking - discover the mindful technology solutions designed for every aspect of your wellness journey.</p>
+                <h2>Ready to Eat Well and Stay on Track?</h2>
+                <p>Snap a photo to count calories with MindLab Fitness, and let the Mindful Meal Plans AI Chef turn what's in your fridge into tonight's dinner - mindful technology for every meal.</p>
                 <button class="btn btn-primary" onclick="openModal()">Join Our Launch List</button>
                 
                 <div class="social-links">
@@ -1536,11 +1533,9 @@
                 </div>
                 <div class="footer-section">
                     <h3>Our Product Suite</h3>
-                    <p><a href="#products">Mind Quest - Teen ADHD Tool</a></p>
-                    <p><a href="#products">MindLab Insights - AI Health Analysis</a></p>
                     <p><a href="https://apps.apple.com/ca/app/ml-fitness/id6752837101" target="_blank" style="color: #10b981;">🟢 MindLab Fitness - iOS App</a></p>
                     <p><a href="https://play.google.com/store/apps/details?id=com.mochasmindlab.mlhealth" target="_blank" style="color: #10b981;">🟢 MindLab Fitness - Android App</a></p>
-                    <p><a href="https://mindfulmealplan.com" target="_blank" style="color: #10b981;">🟢 Mindful Meal Plan - AI Meal Planning</a></p>
+                    <p><a href="#products" style="color: #f59e0b;">🚀 Mindful Meal Plans - AI Kitchen Management (soon)</a></p>
                 </div>
                 <div class="footer-section">
                     <h3>Contact</h3>
