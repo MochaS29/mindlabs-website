@@ -1,4 +1,4 @@
-/* PostHog analytics for mochasmindlab.com (best-practices standard 14).
+/* PostHog analytics for mochasmindlab.com.
    The key is the public project API key (safe client-side); file no-ops if it is ever emptied. */
 (function () {
     var POSTHOG_KEY = 'phc_DdUzBKHUgSMBEczTuTsmhZFHcVa4NABMbHJ7qvpxc3Z9';
