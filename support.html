@@ -197,7 +197,45 @@
                 text-align: center;
             }
         }
-    </style>
+            .site-nav {
+            background: #fff;
+            border-bottom: 1px solid #e8e6e3;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            margin-bottom: 32px;
+        }
+        .site-nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .site-nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            color: #8B4513;
+        }
+        .site-nav-logo img { width: 34px; height: 34px; }
+        .site-nav-links { display: flex; gap: 18px; flex-wrap: wrap; }
+        .site-nav-links a {
+            text-decoration: none;
+            color: #2C2C2C;
+            font-size: 0.93rem;
+            font-weight: 500;
+        }
+        .site-nav-links a:hover { color: #8B4513; }
+        @media (max-width: 560px) {
+            .site-nav-inner { justify-content: center; text-align: center; }
+        }
+</style>
   <!-- Google tag (gtag.js) — GA4, Sep 4 2026 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5SXL0QEQ4"></script>
   <script>
@@ -212,6 +250,19 @@
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 </head>
 <body data-page="support">
+    <nav class="site-nav">
+        <div class="site-nav-inner">
+            <a href="/" class="site-nav-logo">
+                <img src="images/ml-fitness-icon-192.png" alt="" aria-hidden="true">
+                <span>Mocha's Mind Labs</span>
+            </a>
+            <div class="site-nav-links">
+                <a href="/">MindLab Fitness</a>
+                <a href="/about.html">About</a>
+                <a href="/privacy.html">Privacy</a>
+            </div>
+        </div>
+    </nav>
     <div class="container">
         <header>
             <h1>Support</h1>
@@ -224,7 +275,7 @@
 
         <div class="contact-card">
             <p><strong>Email Support</strong></p>
-            <a class="email-link" href="mailto:support@mochasmindlab.com">support@mochasmindlab.com</a>
+            <a class="email-link" href="mailto:mocha@mochasmindlab.com">mocha@mochasmindlab.com</a>
         </div>
 
         <h2>Our Apps</h2>
@@ -270,7 +321,7 @@
 
         <div class="faq-item">
             <h4>I found a bug. How do I report it?</h4>
-            <p>Email us at <a href="mailto:support@mochasmindlab.com">support@mochasmindlab.com</a> with a description of the issue, your device model, and iOS version. Screenshots are always helpful.</p>
+            <p>Email us at <a href="mailto:mocha@mochasmindlab.com">mocha@mochasmindlab.com</a> with a description of the issue, your device model, and iOS version. Screenshots are always helpful.</p>
         </div>
 
         <div class="faq-item">
