@@ -3,6 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO -->
+    <meta name="description" content="How MindLab Fitness handles your data: health data is stored on your device, no account is required, and nothing is sold or mined. Read the full privacy policy.">
+    <link rel="canonical" href="https://mochasmindlab.com/privacy.html">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Privacy Policy - Mocha's Mind Labs">
+    <meta property="og:description" content="How MindLab Fitness handles your data: health data is stored on your device, no account is required, and nothing is sold or mined. Read the full privacy policy.">
+    <meta property="og:url" content="https://mochasmindlab.com/privacy.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://mochasmindlab.com/images/og-home.png">
+    <meta name="twitter:card" content="summary_large_image">
     <title>Privacy Policy - Mocha's MindLab Inc.</title>
     <style>
         /* ===== BRAND COLORS ===== */
@@ -323,17 +334,21 @@
     gtag('js', new Date());
     gtag('config', 'G-N5SXL0QEQ4');
   </script>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/ml-fitness-icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 </head>
-<body>
+<body data-page="privacy">
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <a href="index.html" class="logo">
+            <a href="/" class="logo">
                 <img src="ML-Logo.png" alt="Mocha's Mind Labs Logo">
                 <span>Mocha's Mind Labs</span>
             </a>
             <div class="nav-actions">
-                <a href="index.html" class="contact-btn">Back to Home</a>
+                <a href="/" class="contact-btn">Back to Home</a>
             </div>
         </div>
     </nav>
@@ -346,7 +361,7 @@
                 <div class="company-name">Mocha's MindLab Inc.</div>
                 <div class="dates">
                     <p><em>Effective Date: January 1, 2025</em></p>
-                    <p><em>Last Updated: May 12, 2026</em></p>
+                    <p><em>Last Updated: September 11, 2026</em></p>
                 </div>
             </header>
 
@@ -367,20 +382,25 @@
             <h3>Health and Wellness Data</h3>
             <p>Our app may collect health-related information, including but not limited to:</p>
             <ul>
-                <li>Mental health assessments and responses</li>
-                <li>Mood tracking data</li>
-                <li>Wellness metrics</li>
-                <li>Exercise and activity data</li>
-                <li>Sleep patterns</li>
+                <li>Food and meal logs, including calories and macronutrients</li>
+                <li>Photos of meals you choose to scan with the AI Meal Scanner</li>
+                <li>Exercise and activity logs</li>
+                <li>Step counts</li>
+                <li>Weight, body measurements and progress history</li>
+                <li>Supplements you choose to record</li>
+                <li>Goals you set and your progress against them, which may include a sleep goal if you choose to create one</li>
+                <li>Data you explicitly choose to share from Apple Health or Google Fit, which may include steps, active energy, body mass, heart rate and workouts</li>
             </ul>
+            <p>MindLab Fitness does not collect mood data or mental health assessments. There is no dedicated sleep tracker; sleep appears only if you choose to create a sleep goal, and anything you record against it stays on your device like the rest of your data.</p>
 
             <h3>Technical Information</h3>
             <p>We automatically collect certain technical information, including:</p>
             <ul>
                 <li>Device information (model, operating system, unique device identifiers)</li>
-                <li>Crash reports (when the operating system reports an unhandled error to Apple or Google for diagnostics; we do not run our own analytics service)</li>
+                <li>Crash reports, when the operating system reports an unhandled error to Apple or Google for diagnostics</li>
+                <li>A randomly generated installation identifier, which is not linked to your name, email address or any account</li>
                 <li>IP address and general location information</li>
-                <li>Log files and crash reports</li>
+                <li>Log files</li>
             </ul>
 
             <h2>How We Use Your Information</h2>
@@ -468,6 +488,10 @@
             <h3>In-App Purchases</h3>
             <p>MindLab Fitness offers Pro features through a one-time in-app purchase processed by <strong>Apple's App Store</strong> (iOS) or <strong>Google Play Billing</strong> (Android). We receive a purchase confirmation from these platforms but do not collect or store your payment information. Refunds and billing inquiries are handled by Apple or Google directly per their respective platform policies.</p>
 
+            <h3>Analytics</h3>
+            <p><strong>In the app.</strong> MindLab Fitness records a small number of product events so we can see where people get stuck: completing onboarding, running a first meal scan, being shown the upgrade screen, and starting, completing or failing a purchase. Each event is sent to our own endpoint at mochasmindlab.com together with a randomly generated installation identifier, the platform (iOS or Android) and a timestamp. These events contain <strong>no health data, no food logs, no photos, and no name, email address or account</strong>, and the installation identifier is not tied to your identity. We use this only to understand how the app is used in aggregate.</p>
+            <p><strong>On this website.</strong> Our website, which is separate from the app, uses Google Analytics 4, PostHog and Vercel Analytics to measure page visits and which pages lead to downloads. These operate only in your browser when you visit the site, never inside the app, and they have no access to any data stored in the app.</p>
+
             <h3>AI Meal Scanner</h3>
             <p>When you choose to scan a meal photo using the AI Meal Scanner feature, the photo is transmitted over a secure HTTPS connection to <strong>Anthropic</strong> (anthropic.com), our AI service provider, for analysis. Anthropic identifies foods in the photo and estimates nutrition values. Per Anthropic's API terms, photos are processed in real time and are <strong>not retained, logged, or used for model training</strong>. The nutrition results are returned to your device and stored locally; no copy of the photo or its analysis is kept on our servers.</p>
             <p>If you do not use the AI Meal Scanner feature, no photos leave your device.</p>
@@ -490,7 +514,7 @@
             <p>If you enable smart reminders (water, meals, weight, exercise), MindLab Fitness schedules local notifications on your device. These notifications are generated and delivered locally — no notification content is sent to our servers or to a push-notification service.</p>
 
             <h3>Local-Only Storage and Data Retention</h3>
-            <p>Apart from the third-party services listed above, all MindLab Fitness data — your food log, exercise log, supplements, body measurements, sleep entries, weight history, recipes, achievements — is stored exclusively on your device using the platform's standard storage (Core Data on iOS; Room database and DataStore on Android). We do not have a server that holds this data, and we cannot recover it if you uninstall the app.</p>
+            <p>Apart from the third-party services listed above, all MindLab Fitness data — your food log, exercise log, supplements, body measurements, weight history, recipes, achievements — is stored exclusively on your device using the platform's standard storage (Core Data on iOS; Room database and DataStore on Android). We do not have a server that holds this data, and we cannot recover it if you uninstall the app.</p>
             <p><strong>Retention:</strong> Data is retained on your device for as long as you keep the app installed. We do not retain copies on our servers because no such servers exist for this data. Uninstalling the app, or using Settings &rarr; Clear Data, permanently removes all locally stored MindLab Fitness data.</p>
 
             <h3 id="data-deletion">Data Deletion</h3>
@@ -501,7 +525,7 @@
                 <li><strong>Uninstall the app:</strong> Removing MindLab Fitness from your device deletes all local data and any data stored in app preferences.</li>
                 <li><strong>Revoke health-platform access (optional):</strong> If you previously granted Apple HealthKit or Google Health Connect permissions, you can revoke them at any time through your device's privacy settings. Any weight entries the app wrote to those platforms can be deleted directly within HealthKit (iOS Health app) or Health Connect.</li>
             </ol>
-            <p><strong>What gets deleted:</strong> your food log, exercise log, supplement entries, body measurements, sleep entries, weight history, saved recipes, meal plans, goals, achievements, preferences, and any cached AI Meal Scanner results. All of this lives only on your device.</p>
+            <p><strong>What gets deleted:</strong> your food log, exercise log, supplement entries, body measurements, weight history, saved recipes, meal plans, goals, achievements, preferences, and any cached AI Meal Scanner results. All of this lives only on your device.</p>
             <p><strong>What is kept:</strong> nothing — there is no server-side copy. The AI Meal Scanner photos you scanned were processed in real-time by Anthropic and are not retained by Anthropic or by us, so there is nothing to delete there.</p>
             <p>If you need help with deletion, email <a href="mailto:admin@mochasmindlab.com">admin@mochasmindlab.com</a> and we will walk you through it.</p>
 
@@ -529,7 +553,30 @@
     </div>
 
     <!-- Footer -->
-    <footer>
+    
+<!-- Download CTA -->
+<div style="max-width:820px;margin:36px auto;padding:26px 24px;border-radius:16px;
+     background:linear-gradient(135deg,#8B4513,#4A9B9B);color:#fff;text-align:center;
+     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <img src="images/ml-fitness-icon-192.png" alt="" aria-hidden="true"
+       style="width:64px;height:64px;margin-bottom:10px;">
+  <h2 style="color:#fff;margin:0 0 8px;font-size:1.5rem;">MindLab Fitness</h2>
+  <p style="margin:0 auto 18px;max-width:520px;opacity:.95;line-height:1.55;">
+    Snap a photo of your meal and get instant calories and macros. Free to download.
+    $8.99 CAD one-time Pro unlock, no subscription. Your health data stays on your device.
+  </p>
+  <a href="https://apps.apple.com/ca/app/mindlab-fitness/id6752837101" target="_blank" rel="noopener"
+     style="display:inline-block;margin:5px;background:#fff;color:#8B4513;padding:12px 26px;
+            border-radius:100px;text-decoration:none;font-weight:700;">Download for iOS</a>
+  <a href="https://play.google.com/store/apps/details?id=com.mochasmindlab.mlhealth" target="_blank" rel="noopener"
+     style="display:inline-block;margin:5px;background:#fff;color:#8B4513;padding:12px 26px;
+            border-radius:100px;text-decoration:none;font-weight:700;">Download for Android</a>
+  <p style="margin:16px 0 0;font-size:.88rem;">
+    <a href="/" style="color:#fff;text-decoration:underline;">See all features and pricing</a>
+  </p>
+</div>
+
+<footer>
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Mocha's Mind Labs Inc.</h3>
@@ -543,15 +590,15 @@
                 </div>
             </div>
             <div class="footer-section">
-                <h3>Our Product Suite</h3>
-                <p><a href="index.html#products">Mind Quest - Teen ADHD Tool</a></p>
-                <p><a href="index.html#products">MindLab Insights - AI Health Analysis</a></p>
-                <p><a href="ml-fitness.html">MindLab Fitness - Fitness & Nutrition</a></p>
+                <h3>Our Apps</h3>
+                <p><a href="/">MindLab Fitness</a></p>
+                <p><a href="https://mindfulmealplan.com" target="_blank" rel="noopener">Mindful Meal Plans</a></p>
+                <p><a href="/about.html">About the company</a></p>
             </div>
             <div class="footer-section">
                 <h3>Contact</h3>
                 <p>📧 admin@mochasmindlab.com</p>
-                <p>🌐 www.mochamindlabs.com</p>
+                <p>🌐 <a href="/">mochasmindlab.com</a></p>
             </div>
             <div class="footer-section">
                 <h3>Connect</h3>
@@ -562,14 +609,28 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Mocha's Mind Labs Inc. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | Designed with mindfulness and care.</p>
+            <p>&copy; 2026 Mocha's Mind Labs Inc. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | Designed with mindfulness and care.</p>
                 <p style="margin-top: 8px; font-size: 0.85em; opacity: 0.8;">Built with AI, directed and tested by a human. The same way we help others work.</p>
         </div>
     </footer>
+<!-- Umbrella brand note -->
+<div style="background:#2C2C2C;color:#b8b3ae;padding:22px 20px;font-size:.85rem;line-height:1.7;
+     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;text-align:center;">
+  <div style="max-width:900px;margin:0 auto;">
+    MindLab Fitness is made by <a href="/about.html" style="color:#7FB069;">Mocha's Mind Labs Inc.</a>,
+    Vancouver, British Columbia. Also from us:
+    <a href="https://mindfulmealplan.com" target="_blank" rel="noopener" style="color:#7FB069;">Mindful Meal Plans</a> &middot;
+    <a href="https://www.happygrants.com/" target="_blank" rel="noopener" style="color:#7FB069;">Happy Grants</a> &middot;
+    <a href="https://www.certalot.com/" target="_blank" rel="noopener" style="color:#7FB069;">Certalot</a> &middot;
+    <a href="https://mochashmigelsky.com" target="_blank" rel="noopener" style="color:#7FB069;">Mocha Shmigelsky</a>
+  </div>
+</div>
+
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/posthog.js"></script>
+<script defer src="/download-bar.js"></script>
 </body>
 </html>

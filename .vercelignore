@@ -1,0 +1,9 @@
+# Local history and working material that must never be deployed or indexed.
+_archive/
+mochashmigelsky/
+mindquest-pm-agent/
+MindLabsQuestSwiftUI/
+MindLabsQuestAndroid/
+MindQuestApp/
+docker/
+*.md

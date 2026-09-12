@@ -3,21 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mocha's Mind Labs Inc. | Empowering Health Through Mindful Technology</title>
-    
-    <!-- Favicon and App Icons -->
-    <link rel="icon" type="image/png" href="mindquest-icon.png">
-    <link rel="apple-touch-icon" href="mindquest-icon.png">
-    <link rel="shortcut icon" type="image/png" href="mindquest-icon.png">
-    
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    <title>MindLab Fitness: AI Calorie Tracker, One-Time Price</title>
 
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Snap a photo of your meal and get calories, protein, carbs and fat in seconds. Free to download, $8.99 CAD one-time Pro unlock, never a subscription. Health data stays on your device. iOS and Android.">
+    <meta name="author" content="Mocha's Mind Labs Inc.">
+    <link rel="canonical" href="https://mochasmindlab.com/">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="ML Fitness - AI-Powered Calorie Tracking">
+    <meta property="og:description" content="Snap a photo of your meal. Get instant calories and macros. Free to download. $8.99 one-time Pro unlock. No subscriptions.">
+    <meta property="og:image" content="https://mochasmindlab.com/images/og-ml-fitness.png">
+    <meta property="og:url" content="https://mochasmindlab.com/">
+    <meta property="og:site_name" content="Mocha's Mind Labs">
+    <meta property="og:locale" content="en_CA">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:type" content="website">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="ML Fitness - AI-Powered Calorie Tracking">
+    <meta name="twitter:description" content="Snap a photo of your meal. Get instant calories and macros. Free to download. $8.99 one-time Pro unlock. No subscriptions.">
+    <meta name="twitter:image" content="https://mochasmindlab.com/images/og-ml-fitness.png">
+
+    <style>
+        /* ===== MOCHA'S MINDLAB BRAND COLORS ===== */
         :root {
+            /* Brand Colors */
             --mocha-brown: #8B4513;
             --mindful-teal: #4A9B9B;
             --wellness-green: #7FB069;
@@ -25,1129 +39,918 @@
             --warm-white: #FEFEFE;
             --light-gray: #E8E6E3;
             --deep-charcoal: #2C2C2C;
-            --error-red: #D32F2F;
-            --success-green: #4CAF50;
+
+            /* Accents */
+            --purple-accent: #7B68EE;
+            --teal-light: #6AB5B5;
+
+            /* Typography */
+            --font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+            /* Spacing */
+            --section-padding: 80px 20px;
+            --container-max-width: 1200px;
+
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 15px;
+
+            /* Shadows */
+            --shadow-sm: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-md: 0 10px 30px rgba(0,0,0,0.1);
+            --shadow-lg: 0 15px 40px rgba(74, 155, 155, 0.2);
         }
 
-        /* Dark mode variables */
-        [data-theme="dark"] {
-            --soft-cream: #1a1a1a;
-            --warm-white: #2d2d2d;
-            --light-gray: #444;
-            --deep-charcoal: #f0f0f0;
-            --mocha-brown: #B8885A;
-            --mindful-teal: #6FBFBF;
+        /* ===== RESET & BASE STYLES ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: var(--font-family);
             line-height: 1.6;
             color: var(--deep-charcoal);
-            background-color: var(--soft-cream);
-            overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* Loading Screen */
-        .loader-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--mocha-brown), var(--mindful-teal));
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-
-        .loader {
-            width: 60px;
-            height: 60px;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            border-top: 5px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            background: linear-gradient(135deg, var(--soft-cream) 0%, var(--light-gray) 100%);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: var(--container-max-width);
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* Launch Banner */
-        .launch-banner {
-            background: linear-gradient(135deg, var(--mocha-brown), var(--mindful-teal));
-            color: var(--warm-white);
-            text-align: center;
-            padding: 1rem;
-            font-weight: bold;
-            font-size: 1.1rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .launch-banner::before {
-            content: '';
-            position: absolute;
+        /* ===== NAVIGATION ===== */
+        .navbar {
+            position: fixed;
             top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            animation: shimmer 3s infinite;
-        }
-
-        @keyframes shimmer {
-            0% { left: -100%; }
-            100% { left: 100%; }
-        }
-
-        /* Navigation */
-        nav {
-            background: var(--warm-white);
-            border-bottom: 1px solid var(--light-gray);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(249, 247, 244, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(74, 155, 155, 0.2);
+            padding: 16px 0;
             z-index: 1000;
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
         }
 
-        .nav-container {
+        .navbar .container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.8rem;
-            font-weight: bold;
+        .navbar-logo {
+            font-size: 24px;
+            font-weight: 700;
             color: var(--mocha-brown);
             text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-        
-        .logo img {
-            width: 75px;
-            height: 75px;
-            border-radius: 50%;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-actions {
+        .navbar-menu {
             display: flex;
+            gap: 32px;
             align-items: center;
-            gap: 1rem;
+            list-style: none;
         }
 
-        .theme-toggle {
-            background: none;
-            border: 2px solid var(--mindful-teal);
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 1.2rem;
-        }
-
-        .theme-toggle:hover {
-            background: var(--mindful-teal);
-            color: var(--warm-white);
-        }
-
-        .contact-btn {
-            background: var(--mindful-teal);
-            color: var(--warm-white);
-            padding: 0.8rem 1.5rem;
-            border: none;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .contact-btn:hover {
-            background: var(--mocha-brown);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(139, 69, 19, 0.3);
-        }
-
-        /* Email Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(44, 44, 44, 0.8);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .modal-content {
-            background-color: var(--warm-white);
-            margin: 10% auto;
-            padding: 2rem;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            animation: slideIn 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .close {
-            color: var(--light-gray);
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-            position: absolute;
-            right: 15px;
-            top: 10px;
-        }
-
-        .close:hover {
-            color: var(--mocha-brown);
-        }
-
-        .modal h2 {
-            color: var(--mocha-brown);
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .modal p {
+        .navbar-menu a {
+            text-decoration: none;
             color: var(--deep-charcoal);
-            margin-bottom: 1.5rem;
-            text-align: center;
+            font-weight: 500;
+            transition: color 0.3s;
         }
 
-        /* Newsletter Form */
-        .newsletter-form {
-            background: var(--soft-cream);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-top: 1rem;
-        }
-
-        .form-group {
-            margin-bottom: 1rem;
-        }
-
-        .form-group label {
-            display: block;
+        .navbar-menu a:hover {
             color: var(--mindful-teal);
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: var(--radius-md);
             font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 0.8rem;
-            border: 2px solid var(--light-gray);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-            background: var(--warm-white);
-            color: var(--deep-charcoal);
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--mindful-teal);
-        }
-
-        .form-group input.error {
-            border-color: var(--error-red);
-        }
-
-        .error-message {
-            color: var(--error-red);
-            font-size: 0.9rem;
-            margin-top: 0.3rem;
-            display: none;
-        }
-
-        .success-message {
-            color: var(--success-green);
+            text-decoration: none;
             text-align: center;
-            font-weight: 600;
-            display: none;
-            margin-top: 1rem;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 1rem;
-            background: var(--mocha-brown);
-            color: var(--warm-white);
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
+            transition: all 0.3s;
             cursor: pointer;
-            transition: all 0.3s ease;
+            border: none;
+            font-size: 16px;
         }
 
-        .submit-btn:hover:not(:disabled) {
-            background: var(--mindful-teal);
-            transform: translateY(-2px);
+        .btn-primary {
+            background: linear-gradient(135deg, var(--mindful-teal), var(--teal-light));
+            color: white;
         }
 
-        .submit-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
         }
 
-        /* Hero Section */
+        .btn-secondary {
+            background: linear-gradient(135deg, var(--wellness-green), #9FD089);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-large {
+            padding: 18px 40px;
+            font-size: 18px;
+        }
+
+        /* ===== HERO SECTION ===== */
         .hero {
+            padding: 140px 20px 80px;
+            background: linear-gradient(135deg, var(--soft-cream) 0%, var(--light-gray) 100%);
             min-height: 90vh;
             display: flex;
             align-items: center;
-            position: relative;
-            background: linear-gradient(135deg, var(--soft-cream) 0%, var(--warm-white) 100%);
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: -10%;
-            width: 60%;
-            height: 100%;
-            background: radial-gradient(ellipse at center, rgba(74, 155, 155, 0.1) 0%, transparent 70%);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(2deg); }
         }
 
         .hero-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            gap: 60px;
             align-items: center;
-            position: relative;
-            z-index: 2;
         }
 
         .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: bold;
-            color: var(--mocha-brown);
-            margin-bottom: 1rem;
+            font-size: 48px;
+            font-weight: 700;
             line-height: 1.2;
-            animation: slideInLeft 1s ease-out;
+            margin-bottom: 20px;
+            color: var(--mocha-brown);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .hero-text .tagline {
-            font-size: 1.3rem;
+        .hero-text .highlight {
             color: var(--mindful-teal);
-            margin-bottom: 2rem;
+        }
+
+        .hero-subheading {
+            font-size: 20px;
+            color: var(--mindful-teal);
+            margin-bottom: 30px;
             font-weight: 500;
-            animation: slideInLeft 1s ease-out 0.2s both;
         }
 
-        .hero-text p {
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
+        .hero-features {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .hero-features li {
+            font-size: 18px;
+            padding: 10px 0;
             color: var(--deep-charcoal);
-            animation: slideInLeft 1s ease-out 0.4s both;
         }
 
-        .cta-buttons {
+        .hero-features li::before {
+            content: "✓ ";
+            color: var(--wellness-green);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .hero-cta {
             display: flex;
-            gap: 1rem;
-            animation: slideInLeft 1s ease-out 0.6s both;
+            gap: 16px;
+            margin: 30px 0;
+            flex-wrap: wrap;
         }
 
-        .btn {
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .hero-trust {
+            font-size: 14px;
+            color: #666;
+            margin-top: 16px;
+        }
+
+        .hero-trust::before {
+            content: "✓ ";
+            color: var(--wellness-green);
+            font-weight: bold;
+        }
+
+        .hero-image {
             position: relative;
-            overflow: hidden;
+            text-align: center;
         }
 
-        .btn-primary {
-            background: var(--mocha-brown);
-            color: var(--warm-white);
-            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+        .phone-mockup {
+            width: 300px;
+            height: 600px;
+            background: linear-gradient(135deg, var(--mindful-teal), var(--wellness-green));
+            border-radius: 40px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            padding: 20px;
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.4);
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            text-align: center;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--mocha-brown);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-        .btn-secondary {
-            background: transparent;
+        .section-subtitle {
+            text-align: center;
+            font-size: 20px;
             color: var(--mindful-teal);
-            border: 2px solid var(--mindful-teal);
+            margin-bottom: 50px;
         }
 
-        .btn-secondary:hover {
-            background: var(--mindful-teal);
-            color: var(--warm-white);
-            transform: translateY(-2px);
+        /* ===== VALUE PROPOSITION ===== */
+        .value-prop {
+            padding: var(--section-padding);
+            background: var(--warm-white);
         }
 
-        .hero-visual {
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .value-card {
+            padding: 40px 30px;
+            background: white;
+            border-radius: var(--radius-lg);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow-md);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .value-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .value-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--mocha-brown);
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* ===== COST COMPARISON ===== */
+        .cost-comparison {
+            padding: var(--section-padding);
+            background: linear-gradient(135deg, var(--soft-cream) 0%, var(--light-gray) 100%);
+        }
+
+        .comparison-calculator {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .calculator-controls {
+            margin-bottom: 30px;
+        }
+
+        .calculator-controls label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--mocha-brown);
+        }
+
+        .calculator-controls select {
+            width: 100%;
+            padding: 12px;
+            border-radius: var(--radius-sm);
+            border: 2px solid var(--light-gray);
+            font-size: 16px;
+            font-family: var(--font-family);
+            background: var(--soft-cream);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px;
+            text-align: center;
+            border: 1px solid var(--light-gray);
+        }
+
+        .comparison-table th {
+            background: var(--soft-cream);
+            font-weight: 700;
+            color: var(--mocha-brown);
+        }
+
+        .comparison-table .highlight-row {
+            background: linear-gradient(135deg, rgba(127, 176, 105, 0.1), rgba(74, 155, 155, 0.1));
+            font-weight: 700;
+            color: var(--wellness-green);
+        }
+
+        .savings-message {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--wellness-green);
+            margin: 30px 0;
+        }
+
+        /* ===== FEATURES SHOWCASE ===== */
+        .features {
+            padding: var(--section-padding);
+            background: var(--warm-white);
+        }
+
+        .feature-tabs {
             display: flex;
             justify-content: center;
-            align-items: center;
-            position: relative;
-            animation: slideInRight 1s ease-out 0.3s both;
+            gap: 16px;
+            margin: 40px 0;
+            flex-wrap: wrap;
         }
 
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .hero-card {
-            background: var(--warm-white);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(44, 44, 44, 0.1);
-            text-align: center;
-            position: relative;
-            transform: rotate(-2deg);
-            transition: transform 0.3s ease;
-        }
-
-        .hero-card:hover {
-            transform: rotate(0deg) scale(1.05);
-        }
-
-        .hero-card::before {
-            content: '🧠';
-            font-size: 4rem;
-            display: block;
-            margin-bottom: 1rem;
-        }
-
-        .hero-card h3 {
-            color: var(--mocha-brown);
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .hero-card p {
-            color: var(--deep-charcoal);
-            font-size: 1rem;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 6rem 0;
-            background: var(--warm-white);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--mocha-brown);
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            font-size: 1.2rem;
-            color: var(--mindful-teal);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .feature-card {
+        .feature-tab {
+            padding: 12px 24px;
             background: var(--soft-cream);
-            padding: 2.5rem;
-            border-radius: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid var(--light-gray);
+            border: 2px solid transparent;
+            border-radius: var(--radius-md);
             cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: var(--deep-charcoal);
         }
 
-        .product-card {
-            background: var(--warm-white);
-            border: 2px solid var(--light-gray);
-            position: relative;
-            overflow: hidden;
+        .feature-tab:hover {
+            background: var(--light-gray);
         }
 
-        .product-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: linear-gradient(90deg, var(--mocha-brown), var(--mindful-teal), var(--wellness-green));
-        }
-
-        .product-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 50px rgba(44, 44, 44, 0.15);
+        .feature-tab.active {
+            background: linear-gradient(135deg, var(--mindful-teal), var(--teal-light));
+            color: white;
             border-color: var(--mindful-teal);
         }
 
-        .product-subtitle {
-            color: var(--mindful-teal);
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .product-features {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .feature-tag {
-            background: var(--soft-cream);
-            color: var(--mocha-brown);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            border: 1px solid var(--light-gray);
-        }
-
-        .feature-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-        }
-        
-        .feature-icon.app-icon {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            object-fit: cover;
-            margin: 0 auto 1.5rem;
-        }
-
-        .feature-card h3 {
-            color: var(--mocha-brown);
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .feature-card p {
-            color: var(--deep-charcoal);
-            line-height: 1.6;
-        }
-
-        /* Product Demo Preview */
-        .demo-preview {
+        .feature-content {
             display: none;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid var(--light-gray);
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-top: 40px;
         }
 
-        .demo-preview.active {
-            display: block;
-            animation: slideDown 0.3s ease;
+        .feature-content.active {
+            display: grid;
         }
 
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .feature-screenshot {
+            text-align: center;
         }
 
-        .demo-btn {
-            background: var(--mindful-teal);
-            color: var(--warm-white);
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            cursor: pointer;
-            margin-top: 1rem;
-            transition: all 0.3s ease;
+        .feature-screenshot .phone-mockup {
+            width: 250px;
+            height: 500px;
+            font-size: 18px;
         }
 
-        .demo-btn:hover {
-            background: var(--mocha-brown);
-            transform: scale(1.05);
+        .feature-details h3 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--mocha-brown);
         }
 
-        /* Testimonials Section */
+        .feature-details p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            font-size: 16px;
+            color: #555;
+        }
+
+        .feature-list li::before {
+            content: "✓ ";
+            color: var(--wellness-green);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        /* ===== PRIVACY SECTION ===== */
+        .privacy {
+            padding: var(--section-padding);
+            background: linear-gradient(135deg, var(--soft-cream) 0%, var(--light-gray) 100%);
+        }
+
+        .privacy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .privacy-card {
+            padding: 30px;
+            background: white;
+            border-radius: var(--radius-md);
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s;
+        }
+
+        .privacy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .privacy-card .icon {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .privacy-card h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--mocha-brown);
+        }
+
+        .privacy-card p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* ===== TESTIMONIALS ===== */
         .testimonials {
-            padding: 6rem 0;
-            background: var(--soft-cream);
-        }
-
-        .testimonials-container {
-            max-width: 1000px;
-            margin: 0 auto;
+            padding: var(--section-padding);
+            background: var(--warm-white);
         }
 
         .testimonial-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+            gap: 30px;
+            margin-top: 40px;
         }
 
         .testimonial-card {
-            background: var(--warm-white);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(44, 44, 44, 0.1);
-            transition: transform 0.3s ease;
+            padding: 30px;
+            background: var(--soft-cream);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s;
         }
 
         .testimonial-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(44, 44, 44, 0.15);
+            box-shadow: var(--shadow-md);
         }
 
-        .testimonial-content {
-            font-style: italic;
-            color: var(--deep-charcoal);
-            margin-bottom: 1.5rem;
+        .testimonial-rating {
+            color: #FFD700;
+            font-size: 20px;
+            margin-bottom: 16px;
+        }
+
+        .testimonial-text {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
             line-height: 1.8;
         }
 
         .testimonial-author {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 12px;
         }
 
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--mocha-brown), var(--mindful-teal));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--warm-white);
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .author-info h4 {
-            color: var(--mocha-brown);
-            margin-bottom: 0.2rem;
-        }
-
-        .author-info .role {
-            color: var(--mindful-teal);
-            font-size: 0.9rem;
-        }
-
-        .rating {
-            display: flex;
-            gap: 0.2rem;
-            margin-bottom: 1rem;
-        }
-
-        .star {
-            color: #FFD700;
-            font-size: 1.2rem;
-        }
-
-        /* Comparison Table */
-        .comparison {
-            padding: 6rem 0;
-            background: var(--warm-white);
-        }
-
-        .comparison-table {
-            overflow-x: auto;
-            margin-top: 3rem;
-        }
-
-        .comparison-table table {
-            width: 100%;
-            border-collapse: collapse;
-            background: var(--soft-cream);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .comparison-table th {
-            background: linear-gradient(135deg, var(--mocha-brown), var(--mindful-teal));
-            color: var(--warm-white);
-            padding: 1.2rem;
-            text-align: left;
+        .author-info strong {
+            display: block;
             font-weight: 600;
+            color: var(--mocha-brown);
         }
 
-        .comparison-table td {
-            padding: 1rem 1.2rem;
-            border-bottom: 1px solid var(--light-gray);
-            color: var(--deep-charcoal);
+        .author-info span {
+            font-size: 14px;
+            color: #666;
         }
 
-        .comparison-table tr:hover {
+        /* ===== APP STORE BADGES ===== */
+        .app-badges {
+            padding: var(--section-padding);
+            background: linear-gradient(135deg, var(--soft-cream) 0%, var(--light-gray) 100%);
+            text-align: center;
+        }
+
+        .badge-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .store-badge {
+            height: 60px;
+            transition: transform 0.3s;
+        }
+
+        .store-badge:hover {
+            transform: scale(1.05);
+        }
+
+        .trust-badges {
+            margin-top: 30px;
+            color: #666;
+        }
+
+        .trust-badges p {
+            margin: 10px 0;
+        }
+
+        .trust-badges p::before {
+            content: "✓ ";
+            color: var(--wellness-green);
+            font-weight: bold;
+        }
+
+        /* ===== FAQ ===== */
+        .faq {
+            padding: var(--section-padding);
             background: var(--warm-white);
         }
 
-        .check-mark {
-            color: var(--success-green);
-            font-size: 1.3rem;
-        }
-
-        .x-mark {
-            color: var(--error-red);
-            font-size: 1.3rem;
-        }
-
-        /* FAQ Section */
-        .faq {
-            padding: 6rem 0;
-            background: var(--soft-cream);
-        }
-
-        .faq-container {
+        .faq-list {
             max-width: 800px;
-            margin: 0 auto;
+            margin: 40px auto;
         }
 
         .faq-item {
-            background: var(--warm-white);
-            margin-bottom: 1rem;
-            border-radius: 10px;
+            background: var(--soft-cream);
+            border-radius: var(--radius-md);
+            margin-bottom: 16px;
             overflow: hidden;
-            border: 1px solid var(--light-gray);
-            transition: all 0.3s ease;
-        }
-
-        .faq-item:hover {
-            box-shadow: 0 5px 15px rgba(44, 44, 44, 0.1);
         }
 
         .faq-question {
-            padding: 1.5rem;
+            padding: 20px;
+            font-weight: 600;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 600;
+            transition: background 0.3s;
             color: var(--mocha-brown);
-            transition: background 0.3s ease;
         }
 
         .faq-question:hover {
-            background: var(--soft-cream);
+            background: var(--light-gray);
         }
 
         .faq-question::after {
-            content: '+';
-            font-size: 1.5rem;
-            color: var(--mindful-teal);
-            transition: transform 0.3s ease;
+            content: "▼";
+            transition: transform 0.3s;
+            color: var(--wellness-green);
         }
 
-        .faq-item.active .faq-question::after {
-            transform: rotate(45deg);
+        .faq-question.active::after {
+            transform: rotate(180deg);
         }
 
         .faq-answer {
-            padding: 0 1.5rem;
             max-height: 0;
             overflow: hidden;
-            transition: all 0.3s ease;
-            color: var(--deep-charcoal);
+            transition: max-height 0.3s;
+            padding: 0 20px;
+            color: #555;
         }
 
-        .faq-item.active .faq-answer {
+        .faq-answer.active {
             max-height: 500px;
-            padding: 0 1.5rem 1.5rem;
+            padding: 0 20px 20px;
         }
 
-        /* Stats Section */
-        .stats {
-            padding: 4rem 0;
-            background: linear-gradient(135deg, var(--mindful-teal), var(--wellness-green));
-            color: var(--warm-white);
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
+        /* ===== FINAL CTA ===== */
+        .final-cta {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, var(--mindful-teal), var(--teal-light));
+            color: white;
             text-align: center;
         }
 
-        .stat-item h3 {
-            font-size: 3rem;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-            animation: countUp 2s ease-out;
+        .final-cta h2 {
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
 
-        .stat-item p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+        .final-cta p {
+            font-size: 20px;
+            margin-bottom: 40px;
+            opacity: 0.95;
         }
 
-        /* CTA Section */
-        .cta-section {
-            padding: 6rem 0;
+        .final-cta .hero-cta {
+            justify-content: center;
+        }
+
+        .final-cta .btn {
+            background: white;
+            color: var(--mindful-teal);
+        }
+
+        .final-cta .btn:hover {
             background: var(--soft-cream);
-            text-align: center;
         }
 
-        .cta-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cta-content h2 {
-            font-size: 2.5rem;
-            color: var(--mocha-brown);
-            margin-bottom: 1rem;
-        }
-
-        .cta-content p {
-            font-size: 1.2rem;
-            color: var(--deep-charcoal);
-            margin-bottom: 2.5rem;
-        }
-
-        /* Social Media */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .social-link {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--mindful-teal);
-            color: var(--warm-white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .social-link:hover {
-            background: var(--mocha-brown);
-            transform: translateY(-3px);
-        }
-
-        /* Footer */
-        footer {
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 60px 20px 30px;
             background: var(--deep-charcoal);
-            color: var(--light-gray);
-            padding: 3rem 0 1rem;
+            color: white;
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            gap: 40px;
+            margin-bottom: 40px;
         }
 
-        .footer-section h3 {
-            color: var(--mocha-brown);
-            margin-bottom: 1rem;
+        .footer-section h4 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--wellness-green);
         }
 
+        .footer-section p,
         .footer-section a {
-            color: var(--light-gray);
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            transition: color 0.3s ease;
+            display: block;
+            margin-bottom: 10px;
         }
 
         .footer-section a:hover {
-            color: var(--mindful-teal);
+            color: white;
         }
 
         .footer-bottom {
             text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid #444;
-            font-size: 0.9rem;
+            padding-top: 30px;
+            border-top: 2px solid rgba(74, 155, 155, 0.2);
+            color: rgba(255, 255, 255, 0.5);
         }
 
-        .footer-bottom a {
-            color: var(--mindful-teal);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .footer-bottom a:hover {
-            color: var(--teal-light);
-            text-decoration: underline;
-        }
-
-        /* Responsive Design */
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
-            /* Typography */
-            .hero-text h1 {
-                font-size: 2rem;
-                line-height: 1.2;
-            }
-
-            h2 {
-                font-size: 1.8rem;
-            }
-
-            h3 {
-                font-size: 1.3rem;
-            }
-
-            /* Layout */
-            .hero-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 2rem;
-                padding: 1rem;
-            }
-
-            .features-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .feature-card {
-                padding: 1.5rem;
-            }
-
-            /* Product cards - full width on mobile */
-            .product-card {
-                margin: 0;
-            }
-
-            .product-card .demo-btn {
-                width: 100%;
-                margin-top: 1rem;
-                padding: 1rem;
-                font-size: 1rem;
-            }
-
-            /* Buttons - larger touch targets */
-            .cta-buttons {
-                flex-direction: column;
-                align-items: stretch;
-                width: 100%;
-            }
-
-            .cta-buttons .btn {
-                width: 100%;
-                padding: 1rem 1.5rem;
-                font-size: 1rem;
-                min-height: 48px;
-            }
-
             /* Navigation */
-            .nav-container {
+            .navbar {
+                padding: 12px 0;
+            }
+
+            .navbar .container {
                 padding: 0 1rem;
             }
 
-            .logo {
+            .navbar-logo {
                 font-size: 1.2rem;
             }
 
-            .logo img {
-                width: 68px;
-                height: 68px;
+            .navbar-menu {
+                display: none;
             }
 
-            .nav-actions {
-                gap: 0.5rem;
+            /* Typography */
+            .hero-text h1 {
+                font-size: 28px;
+                line-height: 1.2;
             }
 
-            .theme-toggle {
-                width: 35px;
-                height: 35px;
-                font-size: 1rem;
+            .section-title {
+                font-size: 24px;
             }
 
-            .contact-btn {
-                padding: 0.5rem 1rem;
-                font-size: 0.9rem;
+            .section-subtitle {
+                font-size: 16px;
             }
 
-            /* Hero card */
-            .hero-card {
-                transform: none;
-                margin-top: 2rem;
+            h3 {
+                font-size: 20px;
+            }
+
+            /* Layout */
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero-content,
+            .feature-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                text-align: center;
+            }
+
+            .hero-text,
+            .feature-details {
+                text-align: center;
+            }
+
+            /* Hero section */
+            .hero {
+                padding: 100px 0 60px;
+            }
+
+            .hero-features {
+                text-align: left;
+                padding-left: 1rem;
+            }
+
+            .hero-features li {
+                font-size: 14px;
+            }
+
+            /* Buttons - larger touch targets */
+            .hero-cta {
+                flex-direction: column;
+                gap: 15px;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 16px 24px;
+                font-size: 16px;
+                min-height: 50px;
+            }
+
+            .btn-large {
+                padding: 18px 28px;
+                font-size: 18px;
+            }
+
+            /* Value cards */
+            .value-grid,
+            .privacy-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .value-card,
+            .privacy-card {
                 padding: 1.5rem;
             }
 
-            /* Modal */
-            .modal-content {
-                margin: 10% auto;
-                width: 95%;
-                padding: 1.5rem;
+            .value-icon {
+                font-size: 40px;
             }
 
-            /* Tables */
+            /* Feature tabs */
+            .feature-tabs {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+
+            .feature-tab {
+                width: 100%;
+                padding: 15px 20px;
+                font-size: 16px;
+            }
+
+            /* Screenshots */
+            .feature-screenshot {
+                order: -1;
+            }
+
+            .phone-mockup {
+                width: 250px !important;
+                height: 500px !important;
+            }
+
+            .hero-image img {
+                max-width: 100%;
+            }
+
+            .app-icon-hero {
+                width: 120px !important;
+                height: 120px !important;
+            }
+
+            /* Comparison table */
             .comparison-table {
-                font-size: 0.75rem;
+                font-size: 12px;
                 overflow-x: auto;
                 display: block;
             }
 
             .comparison-table table {
-                min-width: 100%;
+                min-width: 600px;
             }
 
             .comparison-table th,
             .comparison-table td {
-                padding: 0.5rem 0.3rem;
-                font-size: 0.75rem;
+                padding: 8px 4px;
+                font-size: 11px;
             }
 
-            /* Stats */
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
+            /* App badges */
+            .badge-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .store-badge {
+                width: 100%;
+                max-width: 200px;
+                height: auto !important;
+            }
+
+            /* FAQ */
+            .faq-item {
+                padding: 1rem;
+            }
+
+            .faq-question {
+                font-size: 16px;
+                padding-right: 30px;
+            }
+
+            .faq-answer {
+                font-size: 14px;
             }
 
             /* Footer */
-            .footer-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
+            .footer-content {
+                flex-direction: column;
+                gap: 30px;
                 text-align: center;
             }
 
-            /* App icon sizing */
-            .app-icon {
-                width: 60px !important;
-                height: 60px !important;
-            }
-
-            .feature-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 2rem;
-            }
-
-            /* Product features tags */
-            .product-features {
+            /* Cost calculator */
+            .competitor-selector {
                 flex-wrap: wrap;
-                gap: 0.5rem;
-                justify-content: center;
+                gap: 8px;
             }
 
-            .feature-tag {
-                font-size: 0.85rem;
-                padding: 0.4rem 0.8rem;
+            .competitor-selector button {
+                padding: 10px 16px;
+                font-size: 14px;
             }
-        }
 
-        /* Scroll animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Share buttons */
-        .share-section {
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--light-gray);
-            text-align: center;
-        }
-
-        .share-section h4 {
-            color: var(--mocha-brown);
-            margin-bottom: 1rem;
-        }
-
-        .share-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .share-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--light-gray);
-            background: var(--warm-white);
-            color: var(--deep-charcoal);
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .share-btn:hover {
-            background: var(--mindful-teal);
-            color: var(--warm-white);
-            border-color: var(--mindful-teal);
+            /* Sections spacing */
+            section {
+                padding: 50px 0;
+            }
         }
     </style>
   <!-- Google tag (gtag.js) — GA4, Sep 4 2026 -->
@@ -1158,563 +961,683 @@
     gtag('js', new Date());
     gtag('config', 'G-N5SXL0QEQ4');
   </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MobileApplication",
+      "@id": "https://mochasmindlab.com/#app",
+      "name": "MindLab Fitness",
+      "alternateName": "ML Fitness",
+      "url": "https://mochasmindlab.com/",
+      "applicationCategory": "HealthApplication",
+      "applicationSubCategory": "Calorie Counter",
+      "operatingSystem": "iOS 17.0 or later, Android 8.0 or later",
+      "description": "Calorie counter and fitness tracker with no subscription. Snap a photo of your meal and an AI returns calories, protein, carbs and fat. Free to download with a one-time $8.99 CAD Pro unlock. All health data stays on your device.",
+      "image": "https://mochasmindlab.com/images/og-ml-fitness.png",
+      "screenshot": [
+        "https://mochasmindlab.com/01_Dashboard.png",
+        "https://mochasmindlab.com/04_MealScanner.png",
+        "https://mochasmindlab.com/05_MealPlans.png"
+      ],
+      "installUrl": [
+        "https://apps.apple.com/ca/app/mindlab-fitness/id6752837101",
+        "https://play.google.com/store/apps/details?id=com.mochasmindlab.mlhealth"
+      ],
+      "featureList": [
+        "AI meal scanner - photograph a meal for instant calories and macros",
+        "Barcode scanner",
+        "Calorie and macro tracking",
+        "Meal planning across 6+ diet types",
+        "Exercise logging",
+        "Built-in step counter",
+        "Apple Health and Google Fit integration",
+        "Weight and progress charts",
+        "On-device storage, no account required"
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Download",
+          "price": "0",
+          "priceCurrency": "CAD",
+          "availability": "https://schema.org/InStock"
+        },
+        {
+          "@type": "Offer",
+          "name": "Pro unlock (one-time)",
+          "price": "8.99",
+          "priceCurrency": "CAD",
+          "category": "One-time purchase",
+          "availability": "https://schema.org/InStock"
+        }
+      ],
+      "publisher": {
+        "@type": "Organization",
+        "name": "Mocha's Mind Labs Inc.",
+        "url": "https://mochasmindlab.com/",
+        "logo": "https://mochasmindlab.com/ML-Logo-transparent.png"
+      },
+      "inLanguage": "en-CA",
+      "review": [
+        {
+          "@type": "Review",
+          "name": "Awesome All-in-one App!",
+          "reviewBody": "Love this app! It's like an all in one tracker without needing to use multiple apps. Love that it can read data from my Apple Watch which makes it both efficient and integrative. Also love that it can scan products so you don't have to manually search for everything. So nice to track on one platform as little or as much as you like.",
+          "datePublished": "2026-04-20",
+          "author": {
+            "@type": "Person",
+            "name": "KayleyC"
+          },
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5",
+            "worstRating": "1"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Apple App Store"
+          }
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://mochasmindlab.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is there a subscription?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. MindLab Fitness is free to download. Unlocking Pro, including the AI meal scanner and all features, is a single $8.99 CAD one-time purchase that you own for life. There are no monthly fees and no hidden charges."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is my data stored?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "All of your health data is stored locally on your device. We do not use cloud storage, so your data cannot be breached or sold. You can optionally enable encrypted iCloud (iOS) or Google Drive (Android) backups to sync between your own devices."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What features are included?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Everything: the AI-powered meal scanner, meal planning across 6+ diet types, calorie tracking with an extensive food database, a barcode scanner, exercise logging, weight management with charts, Apple Health and Google Fit integration, and a built-in step counter. No features are locked behind an extra payment."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use it on multiple devices?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Buy once on the App Store and use it on all Apple devices signed in with the same Apple ID. MindLab Fitness is also on Google Play for Android. Apple and Google do not share purchases, so Pro is bought once per platform."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you offer refunds?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We offer a 30-day money-back guarantee. If you are not satisfied for any reason, contact us within 30 days of purchase for a full refund."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Will there be updates?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We regularly release free updates with bug fixes, performance improvements and new features. All updates are included with your one-time purchase."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://mochasmindlab.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "MindLab Fitness",
+          "item": "https://mochasmindlab.com/"
+        }
+      ]
+    }
+  ]
+}
+    </script>
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="images/ml-fitness-icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
 </head>
-<body>
-    <!-- Loading Screen -->
-    <div class="loader-wrapper" id="loader">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Launch Banner -->
-    <div class="launch-banner">
-        ✨ MindLab Fitness is live on iOS &amp; Android! ✨ Mindful Meal Plans is now on the App Store
-    </div>
-
+<body data-page="home">
     <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="ML-Logo.png" alt="Mocha's Mind Labs Logo">
-                <span>Mocha's Mind Labs</span>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="navbar-logo" style="display: flex; align-items: center; gap: 0.8rem;">
+                <img src="images/ml-fitness-icon-192.png" alt="MindLab Fitness" width="56" height="56" style="width: 56px; height: 56px;">
+                <span>Mocha's MindLab</span>
             </a>
-            <div class="nav-actions">
-                <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Dark Mode">
-                    <span id="theme-icon">🌙</span>
-                </button>
-                <button class="contact-btn" onclick="openModal()">Contact Us</button>
-            </div>
+            <ul class="navbar-menu">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="/calorie-counter-without-subscription.html">Compare</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="#download" class="btn btn-primary">Download</a></li>
+            </ul>
         </div>
     </nav>
-
-    <!-- Email Modal -->
-    <div id="emailModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Stay Connected</h2>
-            <p>Join our launch list to get exclusive early access and updates!</p>
-            
-            <form class="newsletter-form" id="newsletterForm" onsubmit="handleNewsletterSubmit(event)">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                    <span class="error-message" id="nameError">Please enter your name</span>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                    <span class="error-message" id="emailError">Please enter a valid email</span>
-                </div>
-                
-                <div class="form-group">
-                    <label for="interest">Primary Interest</label>
-                    <select id="interest" name="interest" style="width: 100%; padding: 0.8rem; border: 2px solid var(--light-gray); border-radius: 8px; background: var(--warm-white); color: var(--deep-charcoal);">
-                        <option value="">Select your primary interest</option>
-                        <option value="fitness">Fitness & Calorie Tracking</option>
-                        <option value="mealplans">Meal Planning & AI Kitchen</option>
-                        <option value="both">Both!</option>
-                    </select>
-                </div>
-                
-                <button type="submit" class="submit-btn">Join Launch List</button>
-                <div class="success-message" id="successMessage">🎉 Welcome to the Mocha's Mind Labs family!</div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Products Section -->
-    <section class="features fade-in" id="products">
-        <div class="container">
-            <div class="section-header">
-                <h2>Our Mindful Health Apps</h2>
-                <p>Two specialized apps designed to transform your wellness journey</p>
-            </div>
-            <div class="features-grid">
-                <div class="feature-card product-card" style="position: relative;">
-                    <span style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">📱 On the App Store</span>
-                    <img src="mindful-meal-plans-logo.png" alt="Mindful Meal Plans" class="feature-icon app-icon">
-                    <h3>Mindful Meal Plans</h3>
-                    <p class="product-subtitle">AI-Powered Kitchen Management</p>
-                    <p>Scan. Plan. Shop. Cook. Point your camera at your fridge and AI builds your inventory, plans meals around what you already have, and keeps the whole household's grocery lists in sync. Stuck at 5pm? Ask your AI Chef what's for dinner.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">AI Fridge Scan</span>
-                        <span class="feature-tag">AI Chef</span>
-                        <span class="feature-tag">Smart Grocery Lists</span>
-                    </div>
-                    <a href="https://mindfulmealplan.com/get-the-app" class="demo-btn" style="display: inline-block; text-decoration: none; text-align: center; background: linear-gradient(135deg, #f59e0b, #d97706);">📱 Download on the App Store</a>
-                    <div class="demo-preview" style="display: block; margin-top: 1rem;">
-                        <p><strong>Key Features:</strong></p>
-                        <ul style="text-align: left; margin: 1rem 0;">
-                            <li>📸 AI fridge &amp; pantry scan - snap a photo, get a live inventory</li>
-                            <li>👨‍🍳 AI Chef - chat your way to tonight's dinner</li>
-                            <li>🤖 AI meal plans built around your household &amp; diet</li>
-                            <li>🛒 Shared grocery &amp; pantry lists for the whole family</li>
-                            <li>📥 Import recipes from any website, Instagram, or TikTok</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="feature-card product-card" style="position: relative;">
-                    <span style="position: absolute; top: 1rem; right: 1rem; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600;">🟢 Live Now</span>
-                    <img src="ml-fitness-app-icon.png" alt="ML Fitness" class="feature-icon app-icon">
-                    <h3>MindLab Fitness</h3>
-                    <p class="product-subtitle">Comprehensive Fitness & Nutrition Tracker</p>
-                    <p>Your all-in-one wellness companion with an AI-powered photo scanner — just snap a photo of your meal and instantly get calories, protein, carbs, and fat. No searching, no guessing, no subscriptions.</p>
-                    <div class="product-features" style="margin-bottom: 20px;">
-                        <span class="feature-tag">AI Photo Scanner</span>
-                        <span class="feature-tag">Calorie Tracking</span>
-                        <span class="feature-tag">Fitness Tracking</span>
-                        <span class="feature-tag">Food Diary</span>
-                    </div>
-                    <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-                        <a href="ml-fitness.html" class="demo-btn" style="display: inline-block; text-decoration: none; text-align: center; background: linear-gradient(135deg, #4A9B9B, #6FBFBF);">Learn More →</a>
-                        <a href="https://apps.apple.com/ca/app/ml-fitness/id6752837101" target="_blank" class="demo-btn" style="display: inline-block; text-decoration: none; text-align: center; background: linear-gradient(135deg, #10b981, #059669);">📱 App Store</a>
-                        <a href="https://play.google.com/store/apps/details?id=com.mochasmindlab.mlhealth" target="_blank" class="demo-btn" style="display: inline-block; text-decoration: none; text-align: center; background: linear-gradient(135deg, #34a853, #188038);">🤖 Google Play</a>
-                    </div>
-                    <div class="demo-preview" style="display: block; margin-top: 1rem;">
-                        <p><strong>Key Features:</strong></p>
-                        <ul style="text-align: left; margin: 1rem 0;">
-                            <li>📸 AI meal scanner — snap a photo, get instant nutrition</li>
-                            <li>📊 Calorie & macro tracking with barcode scanner</li>
-                            <li>🍎 6+ diet-specific meal plans</li>
-                            <li>🏃 Exercise logging & step counter</li>
-                            <li>❤️ Apple Health integration</li>
-                            <li>💰 Free to download · $8.99 one-time Pro unlock, no subscriptions</li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- HIDDEN Jul 2026: MindQuest + Insights parked while the site highlights ML Fitness + Mindful Meal Plans. Remove this comment wrapper to restore.
-                <div class="feature-card product-card" onclick="toggleDemo(this)">
-                    <img src="mindquest-icon.png" alt="Mind Quest" class="feature-icon app-icon">
-                    <h3>Mind Quest</h3>
-                    <p class="product-subtitle">Teen ADHD Executive Function Tool</p>
-                    <p>Gamified scheduling and task management designed specifically for teens with ADHD. Turn daily routines into engaging quests, build executive function skills, and celebrate achievements in a supportive digital environment.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">Gamified Tasks</span>
-                        <span class="feature-tag">ADHD-Friendly</span>
-                        <span class="feature-tag">Teen-Focused</span>
-                    </div>
-                    <button class="demo-btn">Learn More</button>
-                    <div class="demo-preview">
-                        <p><strong>Key Features:</strong></p>
-                        <ul style="text-align: left; margin: 1rem 0;">
-                            <li>🎯 Daily quest system with XP rewards</li>
-                            <li>⏰ Smart reminders & time blindness helpers</li>
-                            <li>🏆 Achievement badges & progress tracking</li>
-                            <li>👥 Parent dashboard for support</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="feature-card product-card" onclick="toggleDemo(this)">
-                    <img src="mindlabs-insights-icon.png" alt="MindLab Insights" class="feature-icon app-icon">
-                    <h3>MindLab Insights</h3>
-                    <p class="product-subtitle">AI Health Insights & Lab Analysis</p>
-                    <p>Transform your lab results into actionable health insights with our AI-powered analysis platform. Get personalized recommendations, track biomarker trends, and understand what your numbers really mean for your wellness.</p>
-                    <div class="product-features">
-                        <span class="feature-tag">AI Analysis</span>
-                        <span class="feature-tag">Lab Integration</span>
-                        <span class="feature-tag">Personalized</span>
-                    </div>
-                    <button class="demo-btn">Learn More</button>
-                    <div class="demo-preview">
-                        <p><strong>Key Features:</strong></p>
-                        <ul style="text-align: left; margin: 1rem 0;">
-                            <li>🔬 Instant lab result interpretation</li>
-                            <li>📊 Trend analysis & predictions</li>
-                            <li>💊 Supplement recommendations</li>
-                            <li>🩺 Doctor visit preparation</li>
-                        </ul>
-                    </div>
-                </div>
-                END HIDDEN -->
-            </div>
-        </div>
-    </section>
-
 
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1>Empowering Health Through Mindful Technology</h1>
-                    <p class="tagline">Transform your wellness journey with personalized analytics and mindful insights</p>
-                    <p>Discover the perfect balance between cutting-edge technology and mindful living. Our innovative platform helps you make informed health decisions while maintaining a sense of calm and clarity.</p>
-                    <div class="cta-buttons">
-                        <button class="btn btn-primary" onclick="openModal()">Stay Updated</button>
+                    <h1>Snap a Photo. <span class="highlight">Get Instant Calories.</span></h1>
+                    <p class="hero-subheading">AI-Powered Calorie Tracking</p>
+                    <ul class="hero-features">
+                        <li>📸 AI identifies foods from photos instantly</li>
+                        <li>📊 Get calories, protein, carbs & fat in seconds</li>
+                        <li>🔒 100% private - data stays on your device</li>
+                        <li>💰 Free to download · $8.99 one-time Pro unlock — no subscriptions</li>
+                    </ul>
+                    <div class="hero-cta">
+                        <a href="https://apps.apple.com/ca/app/ml-fitness/id6752837101" class="btn btn-primary btn-large">Download Free — iOS</a>
+                        <a href="https://play.google.com/store/apps/details?id=com.mochasmindlab.mlhealth" class="btn btn-secondary btn-large">Download Free — Android</a>
                     </div>
+                    <p class="hero-trust">No account required. Works offline.</p>
+                    <p style="font-size: 13px; color: #888; margin-top: 8px;">Prices shown in CAD. The App Store may display a different price in your local currency.</p>
                 </div>
-                <div class="hero-visual">
-                    <div class="hero-card">
-                        <h3>Mindful Analytics</h3>
-                        <p>Personalized insights that respect your privacy and promote genuine wellness</p>
-                    </div>
+                <div class="hero-image">
+                    <!-- Replace 'ml-fitness-icon.png' with your actual app icon file -->
+                    <img src="images/ml-fitness-icon-512.png" alt="ML Fitness App Icon" class="app-icon-hero" style="width: 180px; height: 180px; border-radius: 40px; margin-bottom: 30px; box-shadow: var(--shadow-lg);" onerror="this.style.display='none'">
+                    <!-- Replace 'ml-fitness-dashboard.png' with your actual dashboard screenshot -->
+                    <img src="04_MealScanner.png" alt="ML Fitness AI Meal Scanner" style="max-width: 300px; height: auto; border-radius: 30px; box-shadow: var(--shadow-lg);" onerror="this.parentElement.innerHTML='<div class=\'phone-mockup\'>ML Fitness<br><br>AI Meal Scanner</div>'">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Comparison Table -->
-    <section class="comparison fade-in">
+    <!-- Value Proposition -->
+    <section class="value-prop">
         <div class="container">
-            <div class="section-header">
-                <h2>Choose Your Perfect Solution</h2>
-                <p>Compare features across our product suite</p>
+            <h2 class="section-title">Why ML Fitness is Different</h2>
+            <p class="section-subtitle">AI-Powered. Private. Affordable.</p>
+            <div class="value-grid">
+                <div class="value-card">
+                    <div class="value-icon">📸</div>
+                    <h3>AI Meal Scanner</h3>
+                    <p>Just snap a photo of your meal. Our AI instantly identifies foods and calculates calories, protein, carbs, and fat. No more tedious manual logging or searching through databases.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🔒</div>
+                    <h3>Privacy-First</h3>
+                    <p>Your data stays on your device. No cloud storage. No data mining. Complete control over your health information.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">💰</div>
+                    <h3>Free to Download · $8.99 Pro Unlock</h3>
+                    <p>Free to download. Unlock every Pro feature with a single $8.99 one-time purchase — no subscriptions, no monthly fees. Save hundreds compared to subscription-based apps that charge $10-20/month.</p>
+                </div>
             </div>
-            <div class="comparison-table">
-                <table>
+        </div>
+    </section>
+
+    <!-- Cost Comparison -->
+    <section class="cost-comparison" id="pricing">
+        <div class="container">
+            <h2 class="section-title">See How Much You'll Save</h2>
+            <p class="section-subtitle">Compare the True Cost of Ownership</p>
+            <div class="comparison-calculator">
+                <div class="calculator-controls">
+                    <label for="competitor-select">Compare with:</label>
+                    <select id="competitor-select">
+                        <option value="premium">Premium Fitness App ($19.99/month)</option>
+                        <option value="coaching">Coaching & Wellness App ($59/month)</option>
+                        <option value="basic">Basic Tracker App ($3.33/month)</option>
+                        <option value="advanced">Advanced Nutrition App ($9.99/month)</option>
+                    </select>
+                </div>
+                <table class="comparison-table">
                     <thead>
                         <tr>
-                            <th>Feature</th>
-                            <th>Mindful Meal Plans</th>
-                            <th>MindLab Fitness</th>
+                            <th></th>
+                            <th>1 Year</th>
+                            <th>3 Years</th>
+                            <th>5 Years</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>AI Meal-Photo Calorie Scanner</strong></td>
-                            <td><span class="x-mark">✗</span></td>
-                            <td><span class="check-mark">✓</span></td>
+                            <td><strong>ML Fitness</strong></td>
+                            <td>$8.99 CAD</td>
+                            <td>$8.99 CAD</td>
+                            <td>$8.99 CAD</td>
                         </tr>
                         <tr>
-                            <td><strong>AI Fridge &amp; Pantry Scan</strong></td>
-                            <td><span class="check-mark">✓</span></td>
-                            <td><span class="x-mark">✗</span></td>
+                            <td><strong id="competitor-name">Premium Fitness App</strong></td>
+                            <td id="cost-1year">$239.88</td>
+                            <td id="cost-3year">$719.64</td>
+                            <td id="cost-5year">$1,199.40</td>
                         </tr>
-                        <tr>
-                            <td><strong>AI Chef Chat</strong></td>
-                            <td><span class="check-mark">✓</span></td>
-                            <td><span class="x-mark">✗</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Calorie &amp; Macro Tracking</strong></td>
-                            <td><span class="x-mark">✗</span></td>
-                            <td><span class="check-mark">✓</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Meal Planning</strong></td>
-                            <td><span class="check-mark">✓</span></td>
-                            <td><span class="check-mark">✓</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Shared Grocery &amp; Pantry Lists</strong></td>
-                            <td><span class="check-mark">✓</span></td>
-                            <td><span class="x-mark">✗</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Exercise &amp; Step Tracking</strong></td>
-                            <td><span class="x-mark">✗</span></td>
-                            <td><span class="check-mark">✓</span></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Data Privacy Focus</strong></td>
-                            <td><span class="check-mark">✓</span></td>
-                            <td><span class="check-mark">✓</span></td>
+                        <tr class="highlight-row">
+                            <td><strong>You Save:</strong></td>
+                            <td id="save-1year">$209.89 (87% off)</td>
+                            <td id="save-3year">$689.65 (96% off)</td>
+                            <td id="save-5year">$1,169.41 (97% off)</td>
                         </tr>
                     </tbody>
                 </table>
+                <p class="savings-message">That's like getting 40 years free! 🎉</p>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
-    <section class="faq fade-in">
+    <!-- Features Showcase -->
+    <section class="features" id="features">
         <div class="container">
-            <div class="section-header">
-                <h2>Frequently Asked Questions</h2>
-                <p>Everything you need to know about our products</p>
+            <h2 class="section-title">All the Features You Need</h2>
+            <p class="section-subtitle">Comprehensive Health Tracking in One App</p>
+            <div class="feature-tabs">
+                <button class="feature-tab active" data-feature="ai-scanner">📸 AI Meal Scanner</button>
+                <button class="feature-tab" data-feature="calorie-tracking">📊 Calorie Tracking</button>
+                <button class="feature-tab" data-feature="meal-planning">🍎 Meal Planning</button>
+                <button class="feature-tab" data-feature="exercise">💪 Exercise Tracking</button>
+                <button class="feature-tab" data-feature="health-app">❤️ Health App Sync</button>
+                <button class="feature-tab" data-feature="weight">⚖️ Weight Tracking</button>
             </div>
-            <div class="faq-container">
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        When will the apps be available?
-                    </div>
-                    <div class="faq-answer">
-                        <p>MindLab Fitness is available now on the App Store (iOS) and Google Play (Android). Mindful Meal Plans is launching very soon on iOS - join our launch list to get early access!</p>
-                    </div>
+
+            <!-- AI Meal Scanner -->
+            <div class="feature-content active" id="ai-scanner">
+                <div class="feature-screenshot">
+                    <img src="04_MealScanner.png" alt="AI Meal Scanner Screenshot" style="max-width: 250px; height: auto; border-radius: 30px; box-shadow: var(--shadow-lg);" onerror="this.parentElement.innerHTML='<div class=\'phone-mockup\' style=\'width:250px;height:500px;font-size:18px;\'>AI Scanner<br>Screenshot</div>'">
                 </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        How do you protect user privacy?
-                    </div>
-                    <div class="faq-answer">
-                        <p>Privacy is our top priority. We use end-to-end encryption, never sell user data, and all AI processing happens on-device when possible. You maintain complete control over your data with easy export and deletion options.</p>
-                    </div>
+                <div class="feature-details">
+                    <h3>📸 AI-Powered Meal Scanner</h3>
+                    <p>Simply snap a photo of your meal and let our AI do the work. No more searching through databases or guessing portions.</p>
+                    <ul class="feature-list">
+                        <li>Take a photo of any meal</li>
+                        <li>AI identifies foods automatically</li>
+                        <li>Get instant calorie and macro estimates</li>
+                        <li>Adjust portions and save to diary</li>
+                        <li>Works with homemade and restaurant meals</li>
+                    </ul>
                 </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        Will there be a free version?
-                    </div>
-                    <div class="faq-answer">
-                        <p>Yes! Each app offers a free trial period so you can experience the full features before subscribing. After the trial, premium subscriptions will unlock continued access to advanced analytics, unlimited storage, and priority support.</p>
-                    </div>
+            </div>
+
+            <!-- Meal Planning -->
+            <div class="feature-content" id="meal-planning">
+                <div class="feature-screenshot">
+                    <img src="05_MealPlans.png" alt="Meal Planning Screenshot" style="max-width: 250px; height: auto; border-radius: 30px; box-shadow: var(--shadow-lg);" onerror="this.parentElement.innerHTML='<div class=\'phone-mockup\' style=\'width:250px;height:500px;font-size:18px;\'>Meal Plan<br>Screenshot</div>'">
                 </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        Can I use multiple apps together?
-                    </div>
-                    <div class="faq-answer">
-                        <p>Absolutely! Our apps are designed to work seamlessly together. Data can be shared between apps (with your permission) to provide comprehensive insights across all aspects of your wellness journey.</p>
-                    </div>
+                <div class="feature-details">
+                    <h3>🍎 Meal Planning</h3>
+                    <p>Pre-designed meal plans for every lifestyle: Mediterranean, Keto, Intermittent Fasting, Vegetarian, Family-Friendly, and High-Protein.</p>
+                    <ul class="feature-list">
+                        <li>4-week comprehensive meal plans</li>
+                        <li>Shopping lists included</li>
+                        <li>Complete nutritional breakdowns</li>
+                        <li>Fully customizable meals</li>
+                    </ul>
                 </div>
-                
-                <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        What platforms will be supported?
-                    </div>
-                    <div class="faq-answer">
-                        <p>MindLab Fitness is on iOS and Android today. Mindful Meal Plans launches on iOS first with a web companion, with Android to follow.</p>
-                    </div>
+            </div>
+
+            <!-- Calorie Tracking -->
+            <div class="feature-content" id="calorie-tracking">
+                <div class="feature-screenshot">
+                    <img src="02_FoodDiary.png" alt="Food Diary Screenshot" style="max-width: 250px; height: auto; border-radius: 30px; box-shadow: var(--shadow-lg);" onerror="this.parentElement.innerHTML='<div class=\'phone-mockup\' style=\'width:250px;height:500px;font-size:18px;\'>Food Diary<br>Screenshot</div>'">
+                </div>
+                <div class="feature-details">
+                    <h3>📊 Calorie Tracking</h3>
+                    <p>Comprehensive nutrition tracking with extensive food database and barcode scanning.</p>
+                    <ul class="feature-list">
+                        <li>Track calories, macros & micronutrients</li>
+                        <li>Barcode scanner for easy logging</li>
+                        <li>Save favorite meals</li>
+                        <li>Daily & weekly summaries</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Exercise -->
+            <div class="feature-content" id="exercise">
+                <div class="feature-screenshot">
+                    <img src="03_AddToDiary.png" alt="Exercise Tracking Screenshot" style="max-width: 250px; height: auto; border-radius: 30px; box-shadow: var(--shadow-lg);" onerror="this.parentElement.innerHTML='<div class=\'phone-mockup\' style=\'width:250px;height:500px;font-size:18px;\'>Exercise Log<br>Screenshot</div>'">
+                </div>
+                <div class="feature-details">
+                    <h3>💪 Exercise Tracking</h3>
+                    <p>Log workouts and monitor your fitness progress with detailed statistics.</p>
+                    <ul class="feature-list">
+                        <li>Log duration & calories burned</li>
+                        <li>Track weekly statistics</li>
+                        <li>Visual progress charts</li>
+                        <li>Custom exercise library</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Steps -->
+            <div class="feature-content" id="steps">
+                <div class="feature-screenshot">
+                    <img src="01_Dashboard.png" alt="Step Counter Screenshot" style="max-width: 250px; height: auto; border-radius: 30px; box-shadow: var(--shadow-lg);" onerror="this.parentElement.innerHTML='<div class=\'phone-mockup\' style=\'width:250px;height:500px;font-size:18px;\'>Step Counter<br>Screenshot</div>'">
+                </div>
+                <div class="feature-details">
+                    <h3>👟 Built-In Step Counter</h3>
+                    <p>Track your daily steps and activity levels automatically with device sensors.</p>
+                    <ul class="feature-list">
+                        <li>Automatic step counting</li>
+                        <li>Daily goal setting</li>
+                        <li>Weekly trends</li>
+                        <li>Distance & active time</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Health App -->
+            <div class="feature-content" id="health-app">
+                <div class="feature-screenshot">
+                    <img src="01_Dashboard.png" alt="Health App Sync Screenshot" style="max-width: 250px; height: auto; border-radius: 30px; box-shadow: var(--shadow-lg);" onerror="this.parentElement.innerHTML='<div class=\'phone-mockup\' style=\'width:250px;height:500px;font-size:18px;\'>Health Sync<br>Screenshot</div>'">
+                </div>
+                <div class="feature-details">
+                    <h3>❤️ Apple Health & Google Fit</h3>
+                    <p>Seamlessly integrate with your health ecosystem for unified tracking.</p>
+                    <ul class="feature-list">
+                        <li>Sync with Apple Health / Google Fit</li>
+                        <li>Import workouts & activities</li>
+                        <li>Export nutrition data</li>
+                        <li>Unified health dashboard</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Weight -->
+            <div class="feature-content" id="weight">
+                <div class="feature-screenshot">
+                    <img src="06_CopyPreviousDay.png" alt="Weight Tracking Screenshot" style="max-width: 250px; height: auto; border-radius: 30px; box-shadow: var(--shadow-lg);" onerror="this.parentElement.innerHTML='<div class=\'phone-mockup\' style=\'width:250px;height:500px;font-size:18px;\'>Weight Progress<br>Screenshot</div>'">
+                </div>
+                <div class="feature-details">
+                    <h3>⚖️ Weight & Progress Tracking</h3>
+                    <p>Monitor your weight journey with visual insights and trend analysis.</p>
+                    <ul class="feature-list">
+                        <li>Track weight changes over time</li>
+                        <li>Calculate & monitor BMI</li>
+                        <li>Set weight goals</li>
+                        <li>Visual progress charts</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section class="stats fade-in">
+    <!-- Privacy Section -->
+    <section class="privacy">
         <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>2</h3>
-                    <p>Specialized Apps</p>
+            <h2 class="section-title">Your Data, Your Control</h2>
+            <p class="section-subtitle">Complete privacy in an age of data breaches</p>
+            <div class="privacy-grid">
+                <div class="privacy-card">
+                    <div class="icon">🔒</div>
+                    <h4>On-Device Storage</h4>
+                    <p>All health data stays on your device. Period.</p>
                 </div>
-                <div class="stat-item">
-                    <h3>95%</h3>
-                    <p>User Satisfaction</p>
+                <div class="privacy-card">
+                    <div class="icon">📱</div>
+                    <h4>No Account Required</h4>
+                    <p>Start using immediately. No email. No signup.</p>
                 </div>
-                <div class="stat-item">
-                    <h3>50+</h3>
-                    <p>Health Metrics Tracked</p>
+                <div class="privacy-card">
+                    <div class="icon">🚫</div>
+                    <h4>No Data Mining</h4>
+                    <p>We don't collect, sell, or analyze your data.</p>
                 </div>
-                <div class="stat-item">
-                    <h3>24/7</h3>
-                    <p>AI-Powered Insights</p>
+                <div class="privacy-card">
+                    <div class="icon">🛡️</div>
+                    <h4>No Cloud Vulnerabilities</h4>
+                    <p>Can't be hacked if it's not in the cloud.</p>
+                </div>
+                <div class="privacy-card">
+                    <div class="icon">🔐</div>
+                    <h4>Encrypted Backups</h4>
+                    <p>Optional encrypted iCloud/Google Drive backups.</p>
+                </div>
+                <div class="privacy-card">
+                    <div class="icon">✅</div>
+                    <h4>GDPR Compliant</h4>
+                    <p>We respect your privacy rights and comply with privacy laws.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="cta-section fade-in">
+    <!-- Testimonials -->
+    <!-- Real App Store review only. Never add a quote we cannot source. -->
+    <section class="testimonials">
         <div class="container">
-            <div class="cta-content">
-                <h2>Ready to Eat Well and Stay on Track?</h2>
-                <p>Snap a photo to count calories with MindLab Fitness, and let the Mindful Meal Plans AI Chef turn what's in your fridge into tonight's dinner - mindful technology for every meal.</p>
-                <button class="btn btn-primary" onclick="openModal()">Join Our Launch List</button>
-                
-                <div class="social-links">
-                    <a href="#" class="social-link" title="Twitter">𝕏</a>
-                    <a href="#" class="social-link" title="LinkedIn">in</a>
-                    <a href="#" class="social-link" title="Facebook">f</a>
-                    <a href="#" class="social-link" title="Instagram">📷</a>
+            <h2 class="section-title">Our First Review</h2>
+            <p class="section-subtitle">One real review from the App Store. We will add more as they come in.</p>
+
+            <div style="max-width:680px;margin:0 auto 2rem;background:var(--warm-white);
+                        border:1px solid var(--light-gray);border-radius:16px;padding:28px 30px;">
+                <div class="testimonial-rating" style="margin-bottom:.5rem;">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p style="font-weight:700;font-size:1.05rem;margin-bottom:.75rem;">Awesome All-in-one App!</p>
+                <p class="testimonial-text" style="margin-bottom:1rem;">&ldquo;Love this app! It&rsquo;s like an all in one tracker without needing to use multiple apps. Love that it can read data from my Apple Watch which makes it both efficient and integrative. Also love that it can scan products so you don&rsquo;t have to manually search for everything. So nice to track on one platform as little or as much as you like.&rdquo;</p>
+                <p style="font-size:.88rem;opacity:.75;margin:0;">
+                    KayleyC &middot; App Store review, Canada &middot; 20 April 2026 &middot; version 2.2.1
+                </p>
+            </div>
+
+            <p class="section-subtitle" style="margin-bottom:1.5rem;">We are a new app, so rather than pad this page out, here is what we can actually promise.</p>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text"><strong>Free to download.</strong> Install it and see whether it fits how you eat before you decide to pay anything at all.</p>
                 </div>
-                
-                <div class="share-section">
-                    <h4>Share with friends who might benefit</h4>
-                    <div class="share-buttons">
-                        <a href="#" class="share-btn" onclick="shareOnTwitter()">Share on X</a>
-                        <a href="#" class="share-btn" onclick="shareOnLinkedIn()">Share on LinkedIn</a>
-                        <a href="#" class="share-btn" onclick="shareOnFacebook()">Share on Facebook</a>
-                        <a href="#" class="share-btn" onclick="copyLink()">Copy Link</a>
-                    </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text"><strong>One payment, not a subscription.</strong> $8.99 CAD once. There is no renewal date to remember and nothing to cancel later.</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text"><strong>Your data never leaves your device.</strong> No account to create, no server holding your food log, nothing for us to sell.</p>
                 </div>
             </div>
+            <p style="text-align:center;margin-top:1.5rem;opacity:.85;">
+                Built in Vancouver, British Columbia by
+                <a href="/about.html">Mocha's Mind Labs</a>. Questions go to a real person.
+            </p>
+        </div>
+    </section>
+
+    <!-- App Store Badges -->
+    <section class="app-badges" id="download">
+        <div class="container">
+            <h2 class="section-title">Available Now for iOS &amp; Android</h2>
+            <p class="section-subtitle">Download today and start your wellness journey</p>
+            <div class="badge-container">
+                <a href="https://apps.apple.com/ca/app/ml-fitness/id6752837101">
+                    <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/en-us?size=250x83" alt="Download on App Store" class="store-badge">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.mochasmindlab.mlhealth">
+                    <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" class="store-badge" style="height: 80px;">
+                </a>
+            </div>
+            <div class="trust-badges">
+                <p>Free to download · $8.99 one-time Pro unlock — no subscriptions</p>
+                <p>All features included - No upsells</p>
+                <p>Free lifetime updates included</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Everything you need to know</p>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">Is there a subscription?</div>
+                    <div class="faq-answer">The app is free to download. Unlocking Pro (including the AI meal scanner and all features) is a single $8.99 CAD one-time purchase — you own it for life. No monthly fees, no hidden charges. <em>Prices are shown in CAD — the App Store will display the equivalent in your local currency (e.g. ~$6.99 USD).</em></div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Where is my data stored?</div>
+                    <div class="faq-answer">All your health data is stored locally on your device. We don't use cloud storage, which means your data can't be hacked, breached, or sold. You can optionally enable encrypted iCloud (iOS) or Google Drive (Android) backups if you want to sync between your devices.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">What features are included?</div>
+                    <div class="faq-answer">Everything! AI-powered meal scanner (snap a photo to log food), meal planning (6+ diet types), calorie tracking with extensive food database, barcode scanner, exercise logging, weight management with charts, Apple Health integration, and more. No features are locked or require additional payment.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Can I use on multiple devices?</div>
+                    <div class="faq-answer">Yes! Purchase once on the App Store (iOS) and use on all your Apple devices logged in with the same Apple ID. Also available on Google Play for Android — note that Apple and Google don't share purchases, so Pro is bought per platform.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Do you offer refunds?</div>
+                    <div class="faq-answer">Yes! We offer a 30-day money-back guarantee. If you're not satisfied for any reason, contact us within 30 days of purchase for a full refund.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Will there be updates?</div>
+                    <div class="faq-answer">Yes! We regularly release free updates with bug fixes, performance improvements, and new features. All updates are included with your one-time purchase. No additional payments required.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Start Tracking Smarter Today</h2>
+            <p>Snap a photo. Get instant calories. Free to download. $8.99 one-time Pro unlock. No subscriptions.</p>
+            <div class="hero-cta">
+                <a href="https://apps.apple.com/ca/app/ml-fitness/id6752837101" class="btn btn-large">Download Free — iOS</a>
+                <a href="https://play.google.com/store/apps/details?id=com.mochasmindlab.mlhealth" class="btn btn-large">Download Free — Android</a>
+            </div>
+            <p style="margin-top: 20px; opacity: 0.95;">✓ 100% Private - Data stays on your device</p>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer>
+    <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Mocha's Mind Labs Inc.</h3>
-                    <p>Empowering health through mindful technology and personalized analytics.</p>
-                    <p style="margin-top: 1rem; font-style: italic;">Your journey to mindful wellness starts here.</p>
-                    <div class="social-links" style="justify-content: flex-start; margin-top: 1rem;">
-                        <span class="social-link" style="opacity: 0.3; cursor: not-allowed;" title="X (Coming Soon)">𝕏</span>
-                        <a href="https://www.linkedin.com/company/mochas-mindlab-inc" target="_blank" rel="noopener" class="social-link" title="LinkedIn">in</a>
-                        <a href="https://www.facebook.com/profile.php?id=61581815043406" target="_blank" rel="noopener" class="social-link" title="Facebook">f</a>
-                        <span class="social-link" style="opacity: 0.3; cursor: not-allowed;" title="Instagram (Coming Soon)">📷</span>
-                    </div>
+                    <h4>ML Fitness</h4>
+                    <p>The complete fitness tracker with no subscriptions.</p>
+                    <p>Part of Mocha's MindLab Inc.</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Our Product Suite</h3>
-                    <p><a href="https://apps.apple.com/ca/app/ml-fitness/id6752837101" target="_blank" style="color: #10b981;">🟢 MindLab Fitness - iOS App</a></p>
-                    <p><a href="https://play.google.com/store/apps/details?id=com.mochasmindlab.mlhealth" target="_blank" style="color: #10b981;">🟢 MindLab Fitness - Android App</a></p>
-                    <p><a href="#products" style="color: #f59e0b;">🚀 Mindful Meal Plans - AI Kitchen Management (soon)</a></p>
+                    <h4>Resources</h4>
+                    <a href="calorie-counter-without-subscription.html">No-subscription comparison</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="mailto:support@mochasmindlab.com">Support</a>
+                    <a href="mailto:support@mochasmindlab.com">Contact Us</a>
                 </div>
                 <div class="footer-section">
-                    <h3>Contact</h3>
-                    <p>📧 admin@mochamindlabs.com</p>
-                    <p>🌐 www.mochamindlabs.com</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <p><a href="https://mochashmigelsky.com" target="_blank" rel="noopener">Mocha Shmigelsky — Founder &amp; AI Enablement</a></p>
-                    <p style="opacity: 0.5; cursor: not-allowed;">X (Twitter) - Coming Soon</p>
-                    <p><a href="https://www.linkedin.com/company/mochas-mindlab-inc" target="_blank" rel="noopener">LinkedIn</a></p>
-                    <p><a href="https://www.facebook.com/profile.php?id=61581815043406" target="_blank" rel="noopener">Facebook</a></p>
-                    <p style="opacity: 0.5; cursor: not-allowed;">Instagram - Coming Soon</p>
+                    <h4>Connect</h4>
+                    <a href="https://twitter.com/mochasmindlab">Twitter</a>
+                    <a href="https://instagram.com/mochasmindlab">Instagram</a>
+                    <a href="https://facebook.com/mochasmindlab">Facebook</a>
+                    <a href="https://github.com/mochasmindlab">GitHub</a>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Mocha's Mind Labs Inc. All rights reserved. | <a href="privacy.html">Privacy Policy</a> | Designed with mindfulness and care.</p>
+                <p>&copy; 2026 Mocha's MindLab Inc. All rights reserved.</p>
                 <p style="margin-top: 8px; font-size: 0.85em; opacity: 0.8;">Built with AI, directed and tested by a human. The same way we help others work.</p>
+                <p>Vancouver, British Columbia, Canada</p>
             </div>
         </div>
     </footer>
+<!-- Umbrella brand note -->
+<div style="background:#2C2C2C;color:#b8b3ae;padding:22px 20px;font-size:.85rem;line-height:1.7;
+     font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;text-align:center;">
+  <div style="max-width:900px;margin:0 auto;">
+    MindLab Fitness is made by <a href="/about.html" style="color:#7FB069;">Mocha's Mind Labs Inc.</a>,
+    Vancouver, British Columbia. Also from us:
+    <a href="https://mindfulmealplan.com" target="_blank" rel="noopener" style="color:#7FB069;">Mindful Meal Plans</a> &middot;
+    <a href="https://www.happygrants.com/" target="_blank" rel="noopener" style="color:#7FB069;">Happy Grants</a> &middot;
+    <a href="https://www.certalot.com/" target="_blank" rel="noopener" style="color:#7FB069;">Certalot</a> &middot;
+    <a href="https://mochashmigelsky.com" target="_blank" rel="noopener" style="color:#7FB069;">Mocha Shmigelsky</a>
+  </div>
+</div>
 
+
+    <!-- JavaScript -->
     <script>
-        // Loading screen
-        window.addEventListener('load', function() {
-            setTimeout(() => {
-                const loader = document.getElementById('loader');
-                loader.style.opacity = '0';
-                setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 500);
-            }, 1000);
+        // Cost Comparison Calculator
+        const competitors = {
+            premium: { name: 'Premium Fitness App', price: 19.99 },
+            coaching: { name: 'Coaching & Wellness App', price: 59 },
+            basic: { name: 'Basic Tracker App', price: 3.33 },
+            advanced: { name: 'Advanced Nutrition App', price: 9.99 }
+        };
+
+        const mlFitnessPrice = 8.99;
+
+        document.getElementById('competitor-select').addEventListener('change', function() {
+            const selected = this.value;
+            const competitor = competitors[selected];
+
+            document.getElementById('competitor-name').textContent = competitor.name;
+
+            const cost1year = (competitor.price * 12).toFixed(2);
+            const cost3year = (competitor.price * 36).toFixed(2);
+            const cost5year = (competitor.price * 60).toFixed(2);
+
+            document.getElementById('cost-1year').textContent = '$' + cost1year;
+            document.getElementById('cost-3year').textContent = '$' + cost3year;
+            document.getElementById('cost-5year').textContent = '$' + cost5year;
+
+            const save1year = (cost1year - mlFitnessPrice).toFixed(2);
+            const save3year = (cost3year - mlFitnessPrice).toFixed(2);
+            const save5year = (cost5year - mlFitnessPrice).toFixed(2);
+
+            const percent1 = ((save1year / cost1year) * 100).toFixed(0);
+            const percent3 = ((save3year / cost3year) * 100).toFixed(0);
+            const percent5 = ((save5year / cost5year) * 100).toFixed(0);
+
+            document.getElementById('save-1year').textContent = `$${save1year} (${percent1}% off)`;
+            document.getElementById('save-3year').textContent = `$${save3year} (${percent3}% off)`;
+            document.getElementById('save-5year').textContent = `$${save5year} (${percent5}% off)`;
         });
 
-        // Dark mode toggle
-        function toggleTheme() {
-            const body = document.body;
-            const currentTheme = body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            body.setAttribute('data-theme', newTheme);
-            
-            const icon = document.getElementById('theme-icon');
-            icon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-            
-            localStorage.setItem('theme', newTheme);
-        }
+        // Feature Tabs
+        const featureTabs = document.querySelectorAll('.feature-tab');
+        const featureContents = document.querySelectorAll('.feature-content');
 
-        // Load saved theme
-        const savedTheme = localStorage.getItem('theme') || 'light';
-        document.body.setAttribute('data-theme', savedTheme);
-        document.getElementById('theme-icon').textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+        featureTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const targetFeature = this.dataset.feature;
 
-        // Email Modal Functions
-        function openModal() {
-            document.getElementById('emailModal').style.display = 'block';
-        }
+                featureTabs.forEach(t => t.classList.remove('active'));
+                featureContents.forEach(c => c.classList.remove('active'));
 
-        function closeModal() {
-            document.getElementById('emailModal').style.display = 'none';
-            resetForm();
-        }
-
-        // Newsletter form handling
-        function handleNewsletterSubmit(event) {
-            event.preventDefault();
-            
-            const form = event.target;
-            const name = form.name.value.trim();
-            const email = form.email.value.trim();
-            const interest = form.interest.value;
-            
-            // Reset errors
-            document.querySelectorAll('.error-message').forEach(msg => msg.style.display = 'none');
-            document.querySelectorAll('input').forEach(input => input.classList.remove('error'));
-            
-            let hasError = false;
-            
-            // Validate name
-            if (name.length < 2) {
-                document.getElementById('nameError').style.display = 'block';
-                document.getElementById('name').classList.add('error');
-                hasError = true;
-            }
-            
-            // Validate email
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                document.getElementById('emailError').style.display = 'block';
-                document.getElementById('email').classList.add('error');
-                hasError = true;
-            }
-            
-            if (!hasError) {
-                // Simulate form submission
-                const submitBtn = form.querySelector('.submit-btn');
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'Joining...';
-                
-                setTimeout(() => {
-                    document.getElementById('successMessage').style.display = 'block';
-                    form.style.display = 'none';
-                    
-                    // Store in localStorage (for demo)
-                    const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
-                    subscribers.push({ name, email, interest, date: new Date().toISOString() });
-                    localStorage.setItem('subscribers', JSON.stringify(subscribers));
-                    
-                    setTimeout(() => {
-                        closeModal();
-                    }, 3000);
-                }, 1500);
-            }
-        }
-
-        function resetForm() {
-            const form = document.getElementById('newsletterForm');
-            form.reset();
-            form.style.display = 'block';
-            document.getElementById('successMessage').style.display = 'none';
-            document.querySelectorAll('.error-message').forEach(msg => msg.style.display = 'none');
-            document.querySelectorAll('input').forEach(input => input.classList.remove('error'));
-            const submitBtn = form.querySelector('.submit-btn');
-            submitBtn.disabled = false;
-            submitBtn.textContent = 'Join Launch List';
-        }
-
-        // Product demo toggle
-        function toggleDemo(card) {
-            const demo = card.querySelector('.demo-preview');
-            demo.classList.toggle('active');
-        }
-
-        // FAQ toggle
-        function toggleFAQ(element) {
-            const faqItem = element.parentElement;
-            faqItem.classList.toggle('active');
-        }
-
-        // Share functions
-        function shareOnTwitter() {
-            const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent("Check out Mocha's Mind Labs - Empowering health through mindful technology! 🧠");
-            window.open(`https://x.com/intent/tweet?url=${url}&text=${text}`, '_blank');
-        }
-
-        function shareOnLinkedIn() {
-            const url = encodeURIComponent(window.location.href);
-            window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, '_blank');
-        }
-
-        function shareOnFacebook() {
-            const url = encodeURIComponent(window.location.href);
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
-        }
-
-        function copyLink() {
-            navigator.clipboard.writeText(window.location.href).then(() => {
-                alert('Link copied to clipboard!');
+                this.classList.add('active');
+                document.getElementById(targetFeature).classList.add('active');
             });
-        }
+        });
 
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            const modal = document.getElementById('emailModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
-                resetForm();
-            }
-        }
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
 
-        // Smooth scrolling for anchor links
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+
+                this.classList.toggle('active');
+                answer.classList.toggle('active');
+            });
+        });
+
+        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -1727,59 +1650,12 @@
                 }
             });
         });
-
-        // Fade in animations on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Add some interactive elements
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                if (!this.querySelector('.demo-preview.active')) {
-                    this.style.transform = 'translateY(-10px) scale(1.02)';
-                }
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                if (!this.querySelector('.demo-preview.active')) {
-                    this.style.transform = 'translateY(0) scale(1)';
-                }
-            });
-        });
-
-        // Sticky nav effect
-        let lastScroll = 0;
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
-                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            } else {
-                nav.style.boxShadow = 'none';
-            }
-            
-            lastScroll = currentScroll;
-        });
     </script>
   <script>
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
   <script defer src="/posthog.js"></script>
+<script defer src="/download-bar.js"></script>
 </body>
 </html>
