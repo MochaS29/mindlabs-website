@@ -239,10 +239,10 @@ footer.site .wrap{max-width:1100px}
   <div style="max-width:900px;margin:0 auto;">
     MindLab Fitness is made by <a href="/about.html" style="color:#7FB069;">Mocha's Mind Labs Inc.</a>,
     Vancouver, British Columbia. Also from us:
-    <a href="https://mindfulmealplan.com" target="_blank" rel="noopener" style="color:#7FB069;">Mindful Meal Plans</a> &middot;
-    <a href="https://www.happygrants.com/" target="_blank" rel="noopener" style="color:#7FB069;">Happy Grants</a> &middot;
-    <a href="https://www.certalot.com/" target="_blank" rel="noopener" style="color:#7FB069;">Certalot</a> &middot;
-    <a href="https://mochashmigelsky.com" target="_blank" rel="noopener" style="color:#7FB069;">Mocha Shmigelsky</a>
+    <a href="https://mindfulmealplan.com/?utm_source=mochasmindlab&amp;utm_medium=referral&amp;utm_campaign=umbrella-footer" target="_blank" rel="noopener" style="color:#7FB069;">Mindful Meal Plans</a> &middot;
+    <a href="https://www.happygrants.com/?utm_source=mochasmindlab&amp;utm_medium=referral&amp;utm_campaign=umbrella-footer" target="_blank" rel="noopener" style="color:#7FB069;">Happy Grants</a> &middot;
+    <a href="https://www.certalot.com/?utm_source=mochasmindlab&amp;utm_medium=referral&amp;utm_campaign=umbrella-footer" target="_blank" rel="noopener" style="color:#7FB069;">Certalot</a> &middot;
+    <a href="https://mochashmigelsky.com/?utm_source=mochasmindlab&amp;utm_medium=referral&amp;utm_campaign=umbrella-footer" target="_blank" rel="noopener" style="color:#7FB069;">Mocha Shmigelsky</a>
   </div>
 </div>
 
@@ -285,16 +285,9 @@ footer.site .wrap{max-width:1100px}
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script defer src="/posthog.js"></script>
-<script>
-  // Attribute store clicks from this page so downloads can be traced to it.
-  document.querySelectorAll('a[href*="apps.apple.com"], a[href*="play.google.com"]').forEach(a => {
-    a.addEventListener('click', () => {
-      const store = a.href.includes('apple') ? 'ios' : 'android';
-      if (window.gtag) gtag('event', 'store_click', {store: store, page: 'comparison'});
-      if (window.posthog) posthog.capture('store_click', {store: store, page: 'comparison'});
-    });
-  });
-</script>
+<!-- Store clicks on this page are tracked by the shared listener in /posthog.js,
+     which reports to GA4 and PostHog. The page-local copy that used to live here
+     double-counted every click in PostHog. -->
 <script defer src="/download-bar.js"></script>
 </body>
 </html>
