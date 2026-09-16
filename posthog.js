@@ -13,22 +13,62 @@
         person_profiles: 'identified_only'
     });
 
-    /* Key conversions for the umbrella hub: app store clicks, consultant-site
-       clicks, and contact clicks. Pageviews are captured automatically. */
+    /* Key conversions for the umbrella hub: app store clicks, sibling-brand
+       clicks, and contact clicks. Pageviews are captured automatically.
+
+       Every event goes to GA4 *and* PostHog from this one listener. GA4 is the
+       property that reports on this site, and before this it saw a store click
+       only from the sticky bar and from the comparison page, so the homepage
+       hero and store badges — the buttons that actually earn the download —
+       were invisible to it. */
+    function track(name, props) {
+        try { if (window.gtag) gtag('event', name, props); } catch (e) {}
+        try { if (window.posthog) posthog.capture(name, props); } catch (e) {}
+    }
+
+    /* Match store links by the app's own id, not by the store host. The hub
+       links to Mindful Meal Plans on the App Store too (about.html), and a
+       host-wide match counted those as MindLab Fitness downloads. */
+    var IOS_APP_ID = 'id6752837101';
+    var ANDROID_APP_ID = 'com.mochasmindlab.mlhealth';
+
+    /* The sibling brands this hub sends traffic to. Each one is a separate
+       brand with its own analytics; without an event here, all it ever sees is
+       an undifferentiated referral from mochasmindlab.com. */
+    var SIBLINGS = [
+        { match: 'mindfulmealplan.com', brand: 'mindful_meal_plans' },
+        { match: 'id6787221576', brand: 'mindful_meal_plans' },
+        { match: 'happygrants.com', brand: 'happy_grants' },
+        { match: 'certalot.com', brand: 'certalot' },
+        { match: 'mochashmigelsky.com', brand: 'mocha_shmigelsky' }
+    ];
+
+    function siblingBrand(href) {
+        for (var i = 0; i < SIBLINGS.length; i++) {
+            if (href.indexOf(SIBLINGS[i].match) !== -1) return SIBLINGS[i].brand;
+        }
+        return '';
+    }
+
     document.addEventListener('click', function (e) {
         var link = e.target.closest ? e.target.closest('a[href]') : null;
         if (!link) return;
         var href = link.getAttribute('href') || '';
         var page = location.pathname;
+        var brand = siblingBrand(href);
 
-        if (href.indexOf('apps.apple.com') !== -1) {
-            posthog.capture('store_click', { store: 'app_store', href: href, page: page });
-        } else if (href.indexOf('play.google.com') !== -1) {
-            posthog.capture('store_click', { store: 'google_play', href: href, page: page });
-        } else if (href.indexOf('mochashmigelsky.com') !== -1) {
-            posthog.capture('consultant_site_click', { href: href, page: page });
+        if (brand) {
+            track('network_click', { brand: brand, href: href, page: page });
+            /* Keep the series the consultant-site funnel was built on. */
+            if (brand === 'mocha_shmigelsky' && window.posthog) {
+                posthog.capture('consultant_site_click', { href: href, page: page });
+            }
+        } else if (href.indexOf(IOS_APP_ID) !== -1) {
+            track('store_click', { store: 'ios', placement: 'inline', href: href, page: page });
+        } else if (href.indexOf(ANDROID_APP_ID) !== -1) {
+            track('store_click', { store: 'android', placement: 'inline', href: href, page: page });
         } else if (href.indexOf('mailto:') === 0) {
-            posthog.capture('contact_click', { href: href, page: page });
+            track('contact_click', { href: href, page: page });
         }
     }, true);
 })();

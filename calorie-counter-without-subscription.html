@@ -285,16 +285,9 @@ footer.site .wrap{max-width:1100px}
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 <script defer src="/posthog.js"></script>
-<script>
-  // Attribute store clicks from this page so downloads can be traced to it.
-  document.querySelectorAll('a[href*="apps.apple.com"], a[href*="play.google.com"]').forEach(a => {
-    a.addEventListener('click', () => {
-      const store = a.href.includes('apple') ? 'ios' : 'android';
-      if (window.gtag) gtag('event', 'store_click', {store: store, page: 'comparison'});
-      if (window.posthog) posthog.capture('store_click', {store: store, page: 'comparison'});
-    });
-  });
-</script>
+<!-- Store clicks on this page are tracked by the shared listener in /posthog.js,
+     which reports to GA4 and PostHog. The page-local copy that used to live here
+     double-counted every click in PostHog. -->
 <script defer src="/download-bar.js"></script>
 </body>
 </html>
