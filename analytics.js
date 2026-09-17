@@ -21,10 +21,44 @@
         session_recording: { maskAllInputs: true }
     });
 
+    /* posthog.capture() before the client has finished loading sends nothing and
+       throws nothing, so a click early in a page's life reached GA4 only. Events
+       wait here until PostHog is loaded (up to 10s), then go in order. The first
+       store_click of a visit was the one being lost. */
+    var pending = [];
+    var waitedMs = 0;
+
+    function phReady() {
+        return window.posthog && window.posthog.__loaded;
+    }
+
+    function flush() {
+        while (pending.length) {
+            var e = pending.shift();
+            try { posthog.capture(e.name, e.props); } catch (err) {}
+        }
+    }
+
+    function drain() {
+        if (phReady()) { flush(); return; }
+        waitedMs += 200;
+        if (waitedMs >= 10000) { pending.length = 0; return; }
+        setTimeout(drain, 200);
+    }
+
+    function capture(name, props) {
+        if (phReady()) {
+            try { posthog.capture(name, props); } catch (e) {}
+        } else {
+            pending.push({ name: name, props: props });
+            if (pending.length === 1) drain();
+        }
+    }
+
     function track(name, props) {
         props.page = document.body.getAttribute('data-page') || location.pathname;
         try { if (window.gtag) gtag('event', name, props); } catch (e) {}
-        try { if (window.posthog) posthog.capture(name, props); } catch (e) {}
+        capture(name, props);
     }
 
     /* Match store links by the app's own id, not by the store host. The hub
@@ -116,8 +150,8 @@
             if (brand) props.brand = brand;
             track('outbound_click', props);
             /* Keep the series the consultant-site funnel was built on. */
-            if (brand === 'mocha_shmigelsky' && window.posthog) {
-                posthog.capture('consultant_site_click', { href: href, page: location.pathname });
+            if (brand === 'mocha_shmigelsky') {
+                capture('consultant_site_click', { href: href, page: location.pathname });
             }
         } else if (link.classList.contains('btn') || link.hasAttribute('data-cta')) {
             track('cta_click', {
