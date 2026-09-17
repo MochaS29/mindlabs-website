@@ -1,8 +1,8 @@
 /*
  * Persistent download CTA.
  * Shared by every page so the download path is never more than one tap away.
- * Picks the right store for the visitor's platform and reports clicks to GA4
- * and PostHog so download intent can be attributed to the page that earned it.
+ * Picks the right store for the visitor's platform. Clicks are reported by the
+ * shared listener in /analytics.js, which reads the sticky_bar placement below.
  */
 (function () {
   'use strict';
@@ -27,12 +27,6 @@
   if (isIOS)        { href = IOS;  label = 'Download free'; }
   else if (isAndroid) { href = PLAY; label = 'Download free'; }
   else              { href = IOS;  label = 'Get it free'; }
-
-  function track(store) {
-    var page = document.body.getAttribute('data-page') || location.pathname;
-    try { if (window.gtag) gtag('event', 'store_click', { store: store, placement: 'sticky_bar', page: page }); } catch (e) {}
-    try { if (window.posthog) posthog.capture('store_click', { store: store, placement: 'sticky_bar', page: page }); } catch (e) {}
-  }
 
   var css = ''
     + '#mlf-dlbar{position:fixed;left:0;right:0;bottom:0;z-index:9000;'
@@ -71,6 +65,7 @@
     bar.id = 'mlf-dlbar';
     bar.setAttribute('role', 'complementary');
     bar.setAttribute('aria-label', 'Download MindLab Fitness');
+    bar.setAttribute('data-placement', 'sticky_bar');
 
     var icon = document.createElement('img');
     icon.src = 'images/ml-fitness-icon-192.png';
@@ -89,9 +84,6 @@
     btn.target = '_blank';
     btn.rel = 'noopener';
     btn.textContent = label;
-    btn.addEventListener('click', function () {
-      track(isAndroid ? 'android' : 'ios');
-    });
 
     var x = document.createElement('button');
     x.className = 'mlf-x';

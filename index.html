@@ -948,13 +948,19 @@
             }
         }
     </style>
-  <!-- Google tag (gtag.js) — GA4, Sep 4 2026 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-N5SXL0QEQ4"></script>
+  <!-- Google tag (gtag.js) — GA4. Loads on the production host only, so local
+       servers and Vercel previews never reach the live property. -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-N5SXL0QEQ4');
+    if (location.hostname === 'mochasmindlab.com') {
+      var gs = document.createElement('script');
+      gs.async = true;
+      gs.src = 'https://www.googletagmanager.com/gtag/js?id=G-N5SXL0QEQ4';
+      document.head.appendChild(gs);
+      gtag('js', new Date());
+      gtag('config', 'G-N5SXL0QEQ4');
+    }
   </script>
     <script type="application/ld+json">
 {
@@ -1648,7 +1654,7 @@
     window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
-  <script defer src="/posthog.js"></script>
+  <script defer src="/analytics.js"></script>
 <script defer src="/download-bar.js"></script>
 </body>
 </html>
