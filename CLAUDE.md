@@ -19,6 +19,23 @@ GA4 key event), `cta_click`, `outbound_click`, `scroll_depth`. No forms on this 
   per deploy, with `traffic_type: "internal"` on every event**, and every other browser check must
   block `googletagmanager.com`, `google-analytics.com` and `*.posthog.com`.
 
+### ML Fitness funnel events (`api/v1/event.js`)
+
+The ML Fitness apps POST anonymous funnel events (`paywall_shown`, `buy_tapped`,
+`purchase_success`, and so on) to `/api/v1/event`. The function always writes a `FUNNEL` line to
+the Vercel logs, and when `EVENTS_SUPABASE_URL` + `EVENTS_SUPABASE_ANON_KEY` are set in Vercel it
+also stores each event durably by calling the `log_fitness_event()` RPC in the **Mindful Meal
+Plans** Supabase project (ML Fitness has no backend of its own). The anon key can only call that
+RPC; it cannot read the table. Rows land in `public.fitness_events` (migration
+`20260918120000_fitness_events.sql` in `meal-plans-pivot`). A failed store logs
+`FUNNEL_STORE_FAIL` and never fails the request. Read the funnel in the Meal Plans SQL editor:
+
+```sql
+select * from public.fitness_funnel_weekly order by week desc;               -- distinct installs per step, by ISO week
+select event, count(*) from public.fitness_events
+ where created_at > now() - interval '7 days' group by 1 order by 2 desc;    -- raw counts, last 7 days
+```
+
 ## Reading our analytics
 
 Read-only, this brand only, 60 requests a minute. `VEX_ANALYTICS_KEY` and `VEX_ANALYTICS_URL` live
