@@ -58,3 +58,8 @@ Sources: `ga4` and `ga4_realtime` take a `report` (a `runReport` body without `p
 (a `searchAnalytics.query` body without `siteUrl`). Ids: GA4 `properties/552894389`,
 PostHog project `524555`, `sc-domain:mochasmindlab.com`. Anything that **writes** — key events,
 filters, property settings — goes to the vex session, which holds the write access.
+
+## Usage stats and logs
+- Analytics without a browser: `python3 ~/Development/Scripts-Tools/analytics/analytics.py posthog events mochasmindlab 7`, `ga4 sessions mochasmindlab 7`, `posthog funnel mochasmindlab <event> <event> ... --days 30`. Credentials live only in `~/Development/.analytics.env`; never copy them into this repo.
+- Request logs (public pages, gated app routes, admin): the Vercel plugin's `get_runtime_logs` (project id in `.vercel/project.json`; group by route or statusCode for patterns) or `vercel logs <domain>`; user agents show only in the Vercel dashboard log detail.
+- ML Fitness funnel events posted to `/api/v1/event` are stored in the Meal Plans Supabase project (`fitness_funnel_weekly`); the `FUNNEL` log line remains in Vercel logs.
