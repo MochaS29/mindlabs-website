@@ -18,7 +18,8 @@
     posthog.init(POSTHOG_KEY, {
         api_host: POSTHOG_HOST,
         person_profiles: 'identified_only',
-        session_recording: { maskAllInputs: true }
+        session_recording: { maskAllInputs: true },
+        capture_heatmaps: true
     });
 
     /* posthog.capture() before the client has finished loading sends nothing and
