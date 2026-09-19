@@ -95,6 +95,11 @@
       "permanent": true
     },
     {
+      "source": "/terms",
+      "destination": "/terms.html",
+      "permanent": true
+    },
+    {
       "source": "/calorie-counter-no-subscription",
       "destination": "/calorie-counter-without-subscription.html",
       "permanent": true
